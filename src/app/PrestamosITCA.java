@@ -151,6 +151,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 jLabel1 = new javax.swing.JLabel();
                 jLabel3 = new javax.swing.JLabel();
                 jLabel4 = new javax.swing.JLabel();
+                txtAuxiliar = new javax.swing.JTextField();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setTitle("Préstamos ITCA");
@@ -212,7 +213,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
                                 .addContainerGap())
                 );
 
@@ -765,8 +766,18 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 txtEquipo.setEditable(false);
 
                 btnEscogerEquipo.setText("Escoger");
+                btnEscogerEquipo.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnEscogerEquipoActionPerformed(evt);
+                        }
+                });
 
                 btnEscogerUsuario.setText("Escoger");
+                btnEscogerUsuario.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnEscogerUsuarioActionPerformed(evt);
+                        }
+                });
 
                 javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
                 jPanel7.setLayout(jPanel7Layout);
@@ -960,6 +971,8 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escudo.jpeg"))); // NOI18N
                 jLabel4.setToolTipText("");
 
+                txtAuxiliar.setText("jTextField1");
+
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -970,7 +983,10 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel3)
-                                                        .addComponent(jLabel1))
+                                                        .addComponent(jLabel1)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(127, 127, 127)
+                                                                .addComponent(txtAuxiliar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel4))
                                         .addComponent(jTabbedPane1))
@@ -984,7 +1000,9 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel3))
+                                                .addComponent(jLabel3)
+                                                .addGap(26, 26, 26)
+                                                .addComponent(txtAuxiliar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTabbedPane1)
@@ -1211,8 +1229,27 @@ public class PrestamosITCA extends javax.swing.JFrame {
         }//GEN-LAST:event_txtCantidadKeyTyped
 
 	//DECLARAR VARAIABLES PARA IDENTIFICAR EL EQUIPO Y USARIO AL CUAL VAMOS A HACER UN PRESTAMOS
-	public Equipo equipoPrestamo = null;
-	public Usuario usuarioPrestamo = null;
+	public Equipo equipoPrestamo;
+	public Usuario usuarioPrestamo;
+
+	public Equipo getEquipoPrestamo() {
+		return equipoPrestamo;
+	}
+
+	public void setEquipoPrestamo(Equipo equipoPrestamo) {
+		this.equipoPrestamo = equipoPrestamo;
+		//txtAuxiliar.setText("dfsdfsdf");
+		//System.out.println("El dato es: " + getEquipoPrestamo().getDescripcion());
+		//txtEquipo.setText(getEquipoPrestamo().getDescripcion());
+	}
+
+	public Usuario getUsuarioPrestamo() {
+		return usuarioPrestamo;
+	}
+
+	public void setUsuarioPrestamo(Usuario usuarioPrestamo) {
+		this.usuarioPrestamo = usuarioPrestamo;
+	}
 
         private void btnGuardarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPrestamoActionPerformed
 		// TODO add your handling code here:
@@ -1242,7 +1279,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
 				iniciar.IniciarDatosPrestamos((DefaultTableModel) tblPrestamo.getModel());
 			} catch (Exception e) {
 				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO USUARIO
-				JOptionPane.showMessageDialog(this, 
+				JOptionPane.showMessageDialog(this,
 					"ERROR: No se ha podido establecer conexión con la base de datos.",
 					"Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -1266,6 +1303,23 @@ public class PrestamosITCA extends javax.swing.JFrame {
 			}
 		}
         }//GEN-LAST:event_btnEliminarPrestamoActionPerformed
+
+        private void btnEscogerEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscogerEquipoActionPerformed
+		// TODO add your handling code here:
+		//ABRIR EL REGISTRO DE LOS EQUIPOS
+		RegistroEquipos registro = new RegistroEquipos(this);
+		registro.setVisible(true);
+		//System.out.println("El dato es: " + equipoPrestamo.getDescripcion());
+		//txtEquipo.setText(equipoPrestamo.getDescripcion());
+        }//GEN-LAST:event_btnEscogerEquipoActionPerformed
+
+        private void btnEscogerUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscogerUsuarioActionPerformed
+//		// TODO add your handling code here:
+//		//ABRIR EL REGISTRO DE LOS USUARIOS
+		RegistroUsuarios registro = new RegistroUsuarios(this);
+		registro.setVisible(true);
+//		//txtUsuario.setText(usuarioPrestamo.getCedula());
+        }//GEN-LAST:event_btnEscogerUsuarioActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -1375,6 +1429,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
         private javax.swing.JTable tblReporte;
         private javax.swing.JTable tblUsuarios;
         public javax.swing.JTextField txtApellidos;
+        public javax.swing.JTextField txtAuxiliar;
         private javax.swing.JTextField txtBuscarEquipo;
         private javax.swing.JTextField txtBuscarPrestamo;
         private javax.swing.JTextField txtBuscarUsuario;

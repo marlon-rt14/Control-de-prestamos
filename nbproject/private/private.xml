@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mjavi/OneDrive/Documentos/NetBeansProjects/FREELANCE/PrestamosITCA/src/Controladores/limpiar.java</file>
-            <file>file:/C:/Users/mjavi/OneDrive/Documentos/NetBeansProjects/FREELANCE/PrestamosITCA/src/Controladores/IniciarDatos.java</file>
-            <file>file:/C:/Users/mjavi/OneDrive/Documentos/NetBeansProjects/FREELANCE/PrestamosITCA/src/Controladores/validar.java</file>
+            <file>file:/C:/Users/mjavi/OneDrive/Documentos/NetBeansProjects/FREELANCE/PrestamosITCA/src/app/RegistroUsuarios.java</file>
+            <file>file:/C:/Users/mjavi/OneDrive/Documentos/NetBeansProjects/FREELANCE/PrestamosITCA/src/app/auxEquipo.java</file>
+            <file>file:/C:/Users/mjavi/OneDrive/Documentos/NetBeansProjects/FREELANCE/PrestamosITCA/src/Controladores/guardarCambios.java</file>
+            <file>file:/C:/Users/mjavi/OneDrive/Documentos/NetBeansProjects/FREELANCE/PrestamosITCA/src/Controladores/AceptarDatos.java</file>
             <file>file:/C:/Users/mjavi/OneDrive/Documentos/NetBeansProjects/FREELANCE/PrestamosITCA/src/app/PrestamosITCA.java</file>
         </group>
     </open-files>
