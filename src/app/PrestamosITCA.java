@@ -125,6 +125,8 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 txtFechaEntrega = new javax.swing.JTextField();
                 jLabel24 = new javax.swing.JLabel();
                 jButton16 = new javax.swing.JButton();
+                jLabel22 = new javax.swing.JLabel();
+                txtCantidadEquipos = new javax.swing.JTextField();
                 txtBuscarPrestamo = new javax.swing.JTextField();
                 btnBuscarPrestamo = new javax.swing.JButton();
                 jScrollPane4 = new javax.swing.JScrollPane();
@@ -567,6 +569,8 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
                 jButton16.setText("Limpiar");
 
+                jLabel22.setText("Cantidad:");
+
                 javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
                 jPanel7.setLayout(jPanel7Layout);
                 jPanel7Layout.setHorizontalGroup(
@@ -574,16 +578,12 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel24)
-                                        .addComponent(txtFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel18)
                                         .addComponent(txtIdPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel19)
                                         .addComponent(txtEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel20)
                                         .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel21)
-                                        .addComponent(txtFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel7Layout.createSequentialGroup()
                                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                         .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
@@ -591,8 +591,18 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jButton15)
-                                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel22)
+                                        .addComponent(txtCantidadEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel24)
+                                        .addComponent(txtFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel21)
+                                        .addComponent(txtFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())
                 );
                 jPanel7Layout.setVerticalGroup(
                         jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -609,6 +619,10 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addComponent(jLabel20)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCantidadEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -635,14 +649,14 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
                         },
                         new String [] {
-                                "ID", "Equipo", "Usuario", "Fecha salida", "Fecha entrega"
+                                "ID", "Equipo", "Usuario", "Cantidad", "Fecha salida", "Fecha entrega"
                         }
                 ) {
                         Class[] types = new Class [] {
-                                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
                         };
                         boolean[] canEdit = new boolean [] {
-                                false, false, false, false, false
+                                false, false, false, false, false, false
                         };
 
                         public Class getColumnClass(int columnIndex) {
@@ -665,6 +679,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         tblPrestamo.getColumnModel().getColumn(2).setResizable(false);
                         tblPrestamo.getColumnModel().getColumn(3).setResizable(false);
                         tblPrestamo.getColumnModel().getColumn(4).setResizable(false);
+                        tblPrestamo.getColumnModel().getColumn(5).setResizable(false);
                 }
 
                 javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -693,10 +708,10 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                                         .addComponent(txtBuscarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(btnBuscarPrestamo))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
                                         .addGroup(jPanel5Layout.createSequentialGroup()
                                                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 133, Short.MAX_VALUE)))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
                 );
 
@@ -860,6 +875,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel2;
         private javax.swing.JLabel jLabel20;
         private javax.swing.JLabel jLabel21;
+        private javax.swing.JLabel jLabel22;
         private javax.swing.JLabel jLabel24;
         private javax.swing.JLabel jLabel3;
         private javax.swing.JLabel jLabel4;
@@ -889,6 +905,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
         private javax.swing.JTextField txtBuscarPrestamo;
         private javax.swing.JTextField txtBuscarUsuario;
         private javax.swing.JTextField txtCantidad;
+        private javax.swing.JTextField txtCantidadEquipos;
         private javax.swing.JTextField txtCedula;
         private javax.swing.JTextField txtColor;
         private javax.swing.JTextField txtDepartamento;

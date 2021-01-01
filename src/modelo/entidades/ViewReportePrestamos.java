@@ -36,11 +36,13 @@ import jdk.nashorn.internal.ir.annotations.Immutable;
 	@NamedQuery(name = "ViewReportePrestamos.findByMarca", query = "SELECT v FROM ViewReportePrestamos v WHERE v.marca = :marca"),
 	@NamedQuery(name = "ViewReportePrestamos.findByModelo", query = "SELECT v FROM ViewReportePrestamos v WHERE v.modelo = :modelo"),
 	@NamedQuery(name = "ViewReportePrestamos.findByColor", query = "SELECT v FROM ViewReportePrestamos v WHERE v.color = :color"),
-	@NamedQuery(name = "ViewReportePrestamos.findByCantidad", query = "SELECT v FROM ViewReportePrestamos v WHERE v.cantidad = :cantidad"),
+	@NamedQuery(name = "ViewReportePrestamos.findByCantidadEquipos", query = "SELECT v FROM ViewReportePrestamos v WHERE v.cantidadEquipos = :cantidadEquipos"),
 	@NamedQuery(name = "ViewReportePrestamos.findByPropiedad", query = "SELECT v FROM ViewReportePrestamos v WHERE v.propiedad = :propiedad"),
 	@NamedQuery(name = "ViewReportePrestamos.findByFechaSalida", query = "SELECT v FROM ViewReportePrestamos v WHERE v.fechaSalida = :fechaSalida"),
 	@NamedQuery(name = "ViewReportePrestamos.findByFechaEntrega", query = "SELECT v FROM ViewReportePrestamos v WHERE v.fechaEntrega = :fechaEntrega")})
 public class ViewReportePrestamos implements Serializable {
+
+	
 
 	private static final long serialVersionUID = 1L;
 	
@@ -69,8 +71,8 @@ public class ViewReportePrestamos implements Serializable {
         @Column(name = "color")
 	private String color;
 	@Basic(optional = false)
-        @Column(name = "cantidad")
-	private int cantidad;
+        @Column(name = "cantidad_equipos")
+	private int cantidadEquipos;
 	@Basic(optional = false)
         @Column(name = "propiedad")
 	private String propiedad;
@@ -110,8 +112,8 @@ public class ViewReportePrestamos implements Serializable {
 		return color;
 	}
 
-	public int getCantidad() {
-		return cantidad;
+	public int getCantidadEquipos() {
+		return cantidadEquipos;
 	}
 
 	public String getPropiedad() {
@@ -127,6 +129,5 @@ public class ViewReportePrestamos implements Serializable {
 	public Date getFechaEntrega() {
 		return fechaEntrega;
 	}
-
 	
 }

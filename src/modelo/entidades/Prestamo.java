@@ -36,6 +36,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 	@NamedQuery(name = "Prestamo.findByFechaEntrega", query = "SELECT p FROM Prestamo p WHERE p.fechaEntrega = :fechaEntrega")})
 public class Prestamo implements Serializable {
 
+	@Basic(optional = false)
+        @Column(name = "cantidad_equipos")
+	private int cantidadEquipos;
+
 	private static final long serialVersionUID = 1L;
 	@Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -109,6 +113,15 @@ public class Prestamo implements Serializable {
 	public void setIdUsuario(Usuario idUsuario) {
 		this.idUsuario = idUsuario;
 	}
+	
+	public int getCantidadEquipos() {
+		return cantidadEquipos;
+	}
+
+	public void setCantidadEquipos(int cantidadEquipos) {
+		this.cantidadEquipos = cantidadEquipos;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -134,5 +147,6 @@ public class Prestamo implements Serializable {
 	public String toString() {
 		return "modelo.entidades.Prestamo[ idPrestamos=" + idPrestamos + " ]";
 	}
+
 	
 }

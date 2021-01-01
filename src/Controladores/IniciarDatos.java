@@ -28,7 +28,7 @@ public class IniciarDatos {
 
 			//CREAR UNA FILA CON TODOS LOS DATOS DE NUESTRO REPORTE
 			Object[] fila = new Object[]{item.getCedula(), item.getNombreUsuario(), item.getDescripcion(),
-				item.getMarca(), item.getModelo(), item.getColor(), item.getCantidad(), item.getPropiedad(),
+				item.getMarca(), item.getModelo(), item.getColor(), item.getCantidadEquipos(), item.getPropiedad(),
 				item.getFechaSalida(), item.getFechaEntrega()};
 
 			//AGREGAR LA FILA A LA TABLA REPORTES
@@ -74,7 +74,8 @@ public class IniciarDatos {
 		//RECORRER LA LISTA DE PRESTAMOS E IR LLENANDO EN LA TABLA PRESTAMOS
 		for (Prestamo item : fac.getListPrestamo()) {
 			//CREAR UNA FILA CON TODOS LOS DATOS DE LOS PRESTAMOS
-			Object[] fila = new Object[]{item.getIdPrestamos(), item.getIdEquipo().getDescripcion(), item.getIdUsuario().getCedula(),
+			Object[] fila = new Object[]{item.getIdPrestamos(), item.getIdEquipo().getDescripcion(), 
+				item.getIdUsuario().getCedula(), item.getCantidadEquipos(),
 				item.getFechaSalida(), item.getFechaEntrega()};
 			//AGREGAR LA FILA A LA TABLA PRESTAMOS
 			dtm.addRow(fila);

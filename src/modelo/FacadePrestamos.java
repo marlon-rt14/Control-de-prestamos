@@ -35,10 +35,12 @@ public class FacadePrestamos extends FacadeViewReporte {
 	}
 
 	//EDITAR LOS VALORES DE UN EQUIPO
-	public static void updatePrestamo(int ID, Equipo equipo, Usuario usuario, Date fechaSalida, Date fechaEntrega) {
+	public static void updatePrestamo(int ID, Equipo equipo, Usuario usuario, int cantidadEquipos, Date fechaSalida, 
+		Date fechaEntrega) {
 		Prestamo actual = daoPrestamo.findPrestamo(ID);
 		actual.setIdEquipo(equipo);
 		actual.setIdUsuario(usuario);
+		actual.setCantidadEquipos(cantidadEquipos);
 		actual.setFechaSalida(fechaSalida);
 		actual.setFechaEntrega(fechaEntrega);
 		try {
@@ -51,10 +53,11 @@ public class FacadePrestamos extends FacadeViewReporte {
 	}
 
 	//GUARDAR UN NUEVO USUARIO
-	public static void savePrestamo(Equipo equipo, Usuario usuario, Date fechaSalida, Date fechaEntrega) {
+	public static void savePrestamo(Equipo equipo, Usuario usuario, int cantidadEquipos, Date fechaSalida, Date fechaEntrega) {
 		Prestamo nuevo = new Prestamo();
 		nuevo.setIdEquipo(equipo);
 		nuevo.setIdUsuario(usuario);
+		nuevo.setCantidadEquipos(cantidadEquipos);
 		nuevo.setFechaSalida(fechaSalida);
 		nuevo.setFechaEntrega(fechaEntrega);
 		daoPrestamo.create(nuevo);
