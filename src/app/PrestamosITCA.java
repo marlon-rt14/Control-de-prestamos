@@ -15,6 +15,11 @@ import modelo.entidades.Prestamo;
 import modelo.entidades.Usuario;
 import modelo.entidades.ViewReportePrestamos;
 import Controladores.IniciarDatos;
+import Controladores.guardarCambios;
+import Controladores.limpiar;
+import Controladores.validar;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,26 +32,25 @@ public class PrestamosITCA extends javax.swing.JFrame {
 	 */
 	public PrestamosITCA() {
 		initComponents();
-		iniciarTablas(); //LLAMAR AL METODO QUE VA A INICAR LOS DATOS DE TODAS LAS TABLAS
+		iniciarDatos(); //LLAMAR AL METODO QUE VA A INICAR LOS DATOS DE TODAS LAS TABLAS
 	}
-	
-	public void iniciarTablas(){ // INICAR LOD DATOS DE TODAS LAS TABLAS
+
+	public void iniciarDatos() { // INICAR LOD DATOS DE TODAS LAS TABLAS
 		IniciarDatos op = new IniciarDatos();//HACER REFERENCIA A LA CLASE DON INICIAMOS LOS DATOS
-		
+
 		// INICIAR LA TABLA DE REPORTES CON LOS DATOS DE LA VISTA REPORTE
-		op.IniciarDatosReporte((DefaultTableModel) tblReporte.getModel()); 
-		
+		op.IniciarDatosReporte((DefaultTableModel) tblReporte.getModel());
+
 		// INICIAR LA TABLA DE USUARIOS CON LOS DATOS DE LOS USUARIOS
 		op.IniciarDatosUsuarios((DefaultTableModel) tblUsuarios.getModel());
-		
+
 		// INIICAR LA TABLA DE LOS EQUIPOS CON LOS DATOS DE LOS EQUIPOS
 		op.IniciarDatosEqipos((DefaultTableModel) tblEquipos.getModel());
-		
+
 		// INICIAR LA TABLA DE LOS PRESTAMOS CON LOS DATOS DE LOS PRESTAMOS
 		op.IniciarDatosPrestamos((DefaultTableModel) tblPrestamo.getModel());
+
 	}
-
-
 
 	/**
 	 * This method is called from within the constructor to initialize the
@@ -63,7 +67,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 tblReporte = new javax.swing.JTable();
                 jPanel2 = new javax.swing.JPanel();
                 jPanel4 = new javax.swing.JPanel();
-                jButton3 = new javax.swing.JButton();
                 btnEliminarUsuario = new javax.swing.JButton();
                 btnGuardarUsuario = new javax.swing.JButton();
                 jLabel2 = new javax.swing.JLabel();
@@ -81,6 +84,9 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 txtTelefono = new javax.swing.JTextField();
                 jLabel11 = new javax.swing.JLabel();
                 btnLimpiarUsuario = new javax.swing.JButton();
+                jLabel23 = new javax.swing.JLabel();
+                jLabel25 = new javax.swing.JLabel();
+                jLabel26 = new javax.swing.JLabel();
                 jScrollPane2 = new javax.swing.JScrollPane();
                 tblUsuarios = new javax.swing.JTable();
                 txtBuscarUsuario = new javax.swing.JTextField();
@@ -89,7 +95,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 jScrollPane3 = new javax.swing.JScrollPane();
                 tblEquipos = new javax.swing.JTable();
                 jPanel6 = new javax.swing.JPanel();
-                jButton6 = new javax.swing.JButton();
                 btnEliminarEquipo = new javax.swing.JButton();
                 btnGuardarEquipo = new javax.swing.JButton();
                 jLabel8 = new javax.swing.JLabel();
@@ -107,26 +112,38 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 txtColor = new javax.swing.JTextField();
                 jLabel17 = new javax.swing.JLabel();
                 btnLimpiarEquipo = new javax.swing.JButton();
+                jLabel27 = new javax.swing.JLabel();
+                jLabel28 = new javax.swing.JLabel();
+                jLabel29 = new javax.swing.JLabel();
+                jLabel30 = new javax.swing.JLabel();
+                jLabel31 = new javax.swing.JLabel();
+                jLabel32 = new javax.swing.JLabel();
                 txtBuscarEquipo = new javax.swing.JTextField();
                 btnBuscarEquipo = new javax.swing.JButton();
                 jPanel5 = new javax.swing.JPanel();
                 jPanel7 = new javax.swing.JPanel();
-                jButton7 = new javax.swing.JButton();
-                jButton14 = new javax.swing.JButton();
-                jButton15 = new javax.swing.JButton();
+                btnEliminarPrestamo = new javax.swing.JButton();
+                btnGuardarPrestamo = new javax.swing.JButton();
                 jLabel18 = new javax.swing.JLabel();
                 txtIdPrestamo = new javax.swing.JTextField();
-                txtEquipo = new javax.swing.JTextField();
                 jLabel19 = new javax.swing.JLabel();
-                txtUsuario = new javax.swing.JTextField();
                 jLabel20 = new javax.swing.JLabel();
                 txtFechaSalida = new javax.swing.JTextField();
                 jLabel21 = new javax.swing.JLabel();
                 txtFechaEntrega = new javax.swing.JTextField();
                 jLabel24 = new javax.swing.JLabel();
-                jButton16 = new javax.swing.JButton();
+                btnLimpiarPrestamo = new javax.swing.JButton();
                 jLabel22 = new javax.swing.JLabel();
                 txtCantidadEquipos = new javax.swing.JTextField();
+                jLabel33 = new javax.swing.JLabel();
+                jLabel34 = new javax.swing.JLabel();
+                jLabel35 = new javax.swing.JLabel();
+                jLabel36 = new javax.swing.JLabel();
+                jLabel37 = new javax.swing.JLabel();
+                txtUsuario = new javax.swing.JTextField();
+                txtEquipo = new javax.swing.JTextField();
+                btnEscogerEquipo = new javax.swing.JButton();
+                btnEscogerUsuario = new javax.swing.JButton();
                 txtBuscarPrestamo = new javax.swing.JTextField();
                 btnBuscarPrestamo = new javax.swing.JButton();
                 jScrollPane4 = new javax.swing.JScrollPane();
@@ -188,7 +205,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
                                 .addContainerGap())
                 );
                 jPanel1Layout.setVerticalGroup(
@@ -203,19 +220,45 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
                 jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-                jButton3.setText("Editar");
-
                 btnEliminarUsuario.setText("Eliminar");
+                btnEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnEliminarUsuarioActionPerformed(evt);
+                        }
+                });
 
                 btnGuardarUsuario.setText("Guardar");
+                btnGuardarUsuario.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnGuardarUsuarioActionPerformed(evt);
+                        }
+                });
 
                 jLabel2.setText("ID:");
 
                 txtIdUsuario.setEditable(false);
 
+                txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyTyped(java.awt.event.KeyEvent evt) {
+                                txtCedulaKeyTyped(evt);
+                        }
+                });
+
                 jLabel5.setText("Cédula:");
 
+                txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyTyped(java.awt.event.KeyEvent evt) {
+                                txtNombresKeyTyped(evt);
+                        }
+                });
+
                 jLabel6.setText("Nombres:");
+
+                txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyTyped(java.awt.event.KeyEvent evt) {
+                                txtApellidosKeyTyped(evt);
+                        }
+                });
 
                 jLabel7.setText("Apellidos:");
 
@@ -223,9 +266,35 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
                 jLabel10.setText("E-mail:");
 
+                txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyTyped(java.awt.event.KeyEvent evt) {
+                                txtTelefonoKeyTyped(evt);
+                        }
+                });
+
                 jLabel11.setText("Teléfono:");
 
                 btnLimpiarUsuario.setText("Limpiar");
+                btnLimpiarUsuario.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnLimpiarUsuarioActionPerformed(evt);
+                        }
+                });
+
+                jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel23.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel23.setText("*");
+                jLabel23.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel25.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel25.setText("*");
+                jLabel25.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel26.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel26.setText("*");
+                jLabel26.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
                 javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
                 jPanel4.setLayout(jPanel4Layout);
@@ -242,20 +311,27 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                         .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel2)
                                         .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel5)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel23))
                                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel6)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel25))
                                         .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel7)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel7)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel26))
                                         .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                                        .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                                         .addComponent(btnLimpiarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addGap(18, 18, 18)
-                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(btnGuardarUsuario)
-                                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(btnGuardarUsuario)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 jPanel4Layout.setVerticalGroup(
@@ -266,15 +342,21 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel23))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel25))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel26))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -294,10 +376,8 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                         .addComponent(btnLimpiarUsuario)
                                         .addComponent(btnGuardarUsuario))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton3)
-                                        .addComponent(btnEliminarUsuario))
-                                .addContainerGap(40, Short.MAX_VALUE))
+                                .addComponent(btnEliminarUsuario)
+                                .addContainerGap(28, Short.MAX_VALUE))
                 );
 
                 tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -354,7 +434,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                                 .addComponent(txtBuscarUsuario)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(btnBuscarUsuario))
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE))
                                 .addContainerGap())
                 );
                 jPanel2Layout.setVerticalGroup(
@@ -415,15 +495,29 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         tblEquipos.getColumnModel().getColumn(6).setResizable(false);
                 }
 
-                jButton6.setText("Editar");
-
                 btnEliminarEquipo.setText("Eliminar");
+                btnEliminarEquipo.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnEliminarEquipoActionPerformed(evt);
+                        }
+                });
 
                 btnGuardarEquipo.setText("Guardar");
+                btnGuardarEquipo.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnGuardarEquipoActionPerformed(evt);
+                        }
+                });
 
                 jLabel8.setText("ID:");
 
                 txtIdEquipo.setEditable(false);
+
+                txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyTyped(java.awt.event.KeyEvent evt) {
+                                txtDescripcionKeyTyped(evt);
+                        }
+                });
 
                 jLabel12.setText("Descripción:");
 
@@ -433,11 +527,47 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
                 jLabel15.setText("Departamento:");
 
+                txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyTyped(java.awt.event.KeyEvent evt) {
+                                txtCantidadKeyTyped(evt);
+                        }
+                });
+
                 jLabel16.setText("Cantidad:");
 
                 jLabel17.setText("Color:");
 
                 btnLimpiarEquipo.setText("Limpiar");
+                btnLimpiarEquipo.setName(""); // NOI18N
+                btnLimpiarEquipo.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnLimpiarEquipoActionPerformed(evt);
+                        }
+                });
+
+                jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel27.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel27.setText("*");
+
+                jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel28.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel28.setText("*");
+
+                jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel29.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel29.setText("*");
+
+                jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel30.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel30.setText("*");
+
+                jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel31.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel31.setText("*");
+
+                jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel32.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel32.setText("*");
 
                 javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
                 jPanel6.setLayout(jPanel6Layout);
@@ -446,28 +576,44 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel17)
+                                        .addGroup(jPanel6Layout.createSequentialGroup()
+                                                .addComponent(jLabel17)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel30))
                                         .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel16)
+                                        .addGroup(jPanel6Layout.createSequentialGroup()
+                                                .addComponent(jLabel16)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel31))
                                         .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel15)
+                                        .addGroup(jPanel6Layout.createSequentialGroup()
+                                                .addComponent(jLabel15)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel32))
                                         .addComponent(txtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel8)
                                         .addComponent(txtIdEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel12)
+                                        .addGroup(jPanel6Layout.createSequentialGroup()
+                                                .addComponent(jLabel12)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel27))
                                         .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel13)
+                                        .addGroup(jPanel6Layout.createSequentialGroup()
+                                                .addComponent(jLabel13)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel28))
                                         .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel14)
+                                        .addGroup(jPanel6Layout.createSequentialGroup()
+                                                .addComponent(jLabel14)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel29))
                                         .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel6Layout.createSequentialGroup()
                                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(btnEliminarEquipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                                        .addComponent(btnEliminarEquipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                                         .addComponent(btnLimpiarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addGap(18, 18, 18)
-                                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(btnGuardarEquipo)
-                                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(btnGuardarEquipo)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 jPanel6Layout.setVerticalGroup(
@@ -478,27 +624,39 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIdEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel12)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel12)
+                                        .addComponent(jLabel27))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel13)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jLabel28))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel14)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel14)
+                                        .addComponent(jLabel29))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel17)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel17)
+                                        .addComponent(jLabel30))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel16)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel16)
+                                        .addComponent(jLabel31))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel15)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel15)
+                                        .addComponent(jLabel32))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(23, 23, 23)
@@ -506,10 +664,8 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                         .addComponent(btnLimpiarEquipo)
                                         .addComponent(btnGuardarEquipo))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton6)
-                                        .addComponent(btnEliminarEquipo))
-                                .addContainerGap(40, Short.MAX_VALUE))
+                                .addComponent(btnEliminarEquipo)
+                                .addContainerGap(16, Short.MAX_VALUE))
                 );
 
                 btnBuscarEquipo.setText("Buscar");
@@ -524,7 +680,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(txtBuscarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                                                .addComponent(txtBuscarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(btnBuscarEquipo))
                                         .addComponent(jScrollPane3))
@@ -549,11 +705,19 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
                 jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-                jButton7.setText("Editar");
+                btnEliminarPrestamo.setText("Eliminar");
+                btnEliminarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnEliminarPrestamoActionPerformed(evt);
+                        }
+                });
 
-                jButton14.setText("Eliminar");
-
-                jButton15.setText("Guardar");
+                btnGuardarPrestamo.setText("Guardar");
+                btnGuardarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnGuardarPrestamoActionPerformed(evt);
+                        }
+                });
 
                 jLabel18.setText("ID:");
 
@@ -567,9 +731,42 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
                 jLabel24.setText("Fecha entrega:");
 
-                jButton16.setText("Limpiar");
+                btnLimpiarPrestamo.setText("Limpiar");
+                btnLimpiarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                btnLimpiarPrestamoActionPerformed(evt);
+                        }
+                });
 
                 jLabel22.setText("Cantidad:");
+
+                jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel33.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel33.setText("*");
+
+                jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel34.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel34.setText("*");
+
+                jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+                jLabel35.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel35.setText("*");
+
+                jLabel36.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                jLabel36.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel36.setText("* (yyyy/MM/dd)");
+
+                jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                jLabel37.setForeground(new java.awt.Color(255, 0, 0));
+                jLabel37.setText("* (yyyy/MM/dd)");
+
+                txtUsuario.setEditable(false);
+
+                txtEquipo.setEditable(false);
+
+                btnEscogerEquipo.setText("Escoger");
+
+                btnEscogerUsuario.setText("Escoger");
 
                 javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
                 jPanel7.setLayout(jPanel7Layout);
@@ -578,31 +775,55 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel18)
-                                        .addComponent(txtIdPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel19)
-                                        .addComponent(txtEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel20)
-                                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(jLabel21)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel36)
+                                                .addGap(61, 61, 61))
                                         .addGroup(jPanel7Layout.createSequentialGroup()
                                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                                        .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addGap(18, 18, 18)
+                                                        .addComponent(txtFechaEntrega, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtFechaSalida, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
+                                                                .addComponent(jLabel19)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(jLabel33))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
+                                                                .addComponent(jLabel20)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(jLabel34))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
+                                                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                        .addComponent(btnEliminarPrestamo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                                                        .addComponent(btnLimpiarPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(btnGuardarPrestamo)
+                                                                .addGap(21, 21, 21))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
+                                                                .addComponent(jLabel22)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(jLabel35))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
+                                                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(btnEscogerUsuario))
+                                                        .addComponent(txtCantidadEquipos, javax.swing.GroupLayout.Alignment.LEADING))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(jPanel7Layout.createSequentialGroup()
                                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jButton15)
-                                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(jLabel22)
-                                        .addComponent(txtCantidadEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel24)
-                                        .addComponent(txtFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel21)
-                                        .addComponent(txtFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())
+                                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                .addComponent(txtIdPrestamo, javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
+                                                                        .addComponent(txtEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(btnEscogerEquipo)))
+                                                        .addGroup(jPanel7Layout.createSequentialGroup()
+                                                                .addComponent(jLabel24)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(jLabel37)))
+                                                .addGap(0, 0, Short.MAX_VALUE))))
                 );
                 jPanel7Layout.setVerticalGroup(
                         jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -612,33 +833,45 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIdPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel19)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel19)
+                                        .addComponent(jLabel33))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnEscogerEquipo))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel20)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel20)
+                                        .addComponent(jLabel34))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnEscogerUsuario))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel22)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel22)
+                                        .addComponent(jLabel35))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCantidadEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel21)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel21)
+                                        .addComponent(jLabel36))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel24)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel24)
+                                        .addComponent(jLabel37))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtFechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(15, 15, 15)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton16)
-                                        .addComponent(jButton15))
+                                        .addComponent(btnLimpiarPrestamo)
+                                        .addComponent(btnGuardarPrestamo))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton7)
-                                        .addComponent(jButton14))
+                                .addComponent(btnEliminarPrestamo)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
 
@@ -688,14 +921,14 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addComponent(txtBuscarPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                                                .addComponent(txtBuscarPrestamo)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(btnBuscarPrestamo))
-                                        .addComponent(jScrollPane4))
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE))
                                 .addContainerGap())
                 );
                 jPanel5Layout.setVerticalGroup(
@@ -762,7 +995,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
         private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
-                // TODO add your handling code here:
+		// TODO add your handling code here:
 		//OBTENER EL VALOR DE LA CELDA "ID" DE LA FILA SELECCIONADA DE LA TABLA USUARIOS
 		int id = Integer.parseInt(String.valueOf(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 0)));
 		//OBTENER EL UN USUARIO EN BASE A NUESTRO ID
@@ -779,7 +1012,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
         }//GEN-LAST:event_tblUsuariosMouseClicked
 
         private void tblEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEquiposMouseClicked
-                // TODO add your handling code here:
+		// TODO add your handling code here:
 		//OBTENER EL VALOR DE LA CELDA "ID" DE LA FILA SELLECCIONADA DE LA TABLA EQUIPOS
 		int id = Integer.parseInt(String.valueOf(tblEquipos.getValueAt(tblEquipos.getSelectedRow(), 0)));
 		//OBTENER UN EQUIPO EN BASE A NUESTRO ID
@@ -792,19 +1025,247 @@ public class PrestamosITCA extends javax.swing.JFrame {
 		txtColor.setText(equipo.getColor());
 		txtCantidad.setText(String.valueOf(equipo.getCantidad()));
 		txtDepartamento.setText(equipo.getPropiedad());
-		
+
         }//GEN-LAST:event_tblEquiposMouseClicked
 
         private void tblPrestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPrestamoMouseClicked
-                // TODO add your handling code here:
+		// TODO add your handling code here:
 		//OBTENER EL VALOR DE LA CELDA "ID" DE LA FILA SELECCIONADA DE LA TABLA PRESTAMOS
 		int id = Integer.parseInt(String.valueOf(tblPrestamo.getValueAt(tblPrestamo.getSelectedRow(), 0)));
+		//ESTABLECEMOS EL FORMATO PARA LA FECHA
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		//OBTENER UN PRESTAMO EN BASE A NUESTRO ID
 		Prestamo prestamo = FacadePrestamos.getPrestamo(id);
-		//
+		//OBTENER EL EQUIPO QUE VAMOS A PRESTAR
+		Equipo equipo = prestamo.getIdEquipo();
+		//OBTENER EL USUARIO QUE VAMOS A PRESTAR
+		Usuario usuario = prestamo.getIdUsuario();
 		//LLENAR LOS TEXTOX CON LOS VALORES DE NUESTRO PRESTAMO
-		
+		txtIdPrestamo.setText(String.valueOf(prestamo.getIdPrestamos()));
+		txtEquipo.setText(equipo.getDescripcion());
+		txtUsuario.setText(usuario.getCedula());
+		txtCantidadEquipos.setText(String.valueOf(prestamo.getCantidadEquipos()));
+		//CONVERTIMOS LA FECHA PARA QUE NOS DEVUELVA STRING
+		txtFechaSalida.setText(sdf.format(prestamo.getFechaSalida()));
+		txtFechaEntrega.setText(sdf.format(prestamo.getFechaEntrega()));
+
+		//######################################################################################
+		//OBTENER EL EQUIPO DEL NUEVO PRESTAMO
+		Equipo actualEquipo = prestamo.getIdEquipo();
+		//OBTENER EL ID DEL EQUIPO QUE VAMOS A PRESTAR
+		int idEquipoActual = actualEquipo.getIdEquipo();
+		//CANTIDAD DE EQUIPOS QUE VAMOS A PRESTAR
+		int cantidad = Integer.parseInt(txtCantidadEquipos.getText());
+
         }//GEN-LAST:event_tblPrestamoMouseClicked
+
+        private void btnLimpiarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarUsuarioActionPerformed
+		// TODO add your handling code here:
+		limpiar limpiarDatos = new limpiar();//HACER REFERENCIA A LA CLASE LIMPIAR
+		limpiarDatos.limipiarUsuarios();//LIMPIAR LOS "TEXTBOX" DE USUARIOS
+        }//GEN-LAST:event_btnLimpiarUsuarioActionPerformed
+
+        private void btnLimpiarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarEquipoActionPerformed
+		// TODO add your handling code here:
+		limpiar limpiarDatos = new limpiar();//HACER REFERENCIA A LA CLASE LIMPIAR
+		limpiarDatos.limipiarEquipos();//LIMPIAR LOS "TEXTBOX" DE EQUIPOS
+        }//GEN-LAST:event_btnLimpiarEquipoActionPerformed
+
+        private void btnLimpiarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPrestamoActionPerformed
+		// TODO add your handling code here:
+		limpiar limpiarDatos = new limpiar();//HACER REFERENCIA A LA CLASE LIMPIAR
+		limpiarDatos.limpiarPrestamos();//LIMPIAR LOS "TEXTBOX" DE PRESTAMOS
+        }//GEN-LAST:event_btnLimpiarPrestamoActionPerformed
+
+        private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
+		// TODO add your handling code here:
+		//LLAMAR A LA CLASE GUARDAR CAMBIOS PARA GUARDAR LOS CAMBIOS
+		guardarCambios gc = new guardarCambios();
+		//HACE REFERENCIA A LA CLASE VALIDAR
+		validar nuevo = new validar();
+		if (nuevo.nuevoUsuario()) {
+			try {
+				//GUARDAR LOS CAMBIOS
+				gc.guardarUsuario();
+			} catch (Exception e) {
+				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO USUARIO
+				JOptionPane.showMessageDialog(this,
+					"ERROR: No se ha podido establecer conexión con la base de datos.",
+					"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		} else {
+			try {
+				//ACTUALIZAR LOS CAMBIOS
+				gc.actualizarUsuario();
+				//ACTUALIZAR LA TABLA USUARIOS
+				IniciarDatos iniciar = new IniciarDatos();
+				iniciar.IniciarDatosUsuarios((DefaultTableModel) tblUsuarios.getModel());
+			} catch (Exception e) {
+				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO USUARIO
+				JOptionPane.showMessageDialog(this,
+					"ERROR: No se ha podido establecer conexión con la base de datos.",
+					"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+        }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
+
+        private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+		// TODO add your handling code here:
+		validar.validarNumeros(evt); // VALIDAR SI ES UN NUMERO
+        }//GEN-LAST:event_txtCedulaKeyTyped
+
+        private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+		// TODO add your handling code here:
+		validar.validarLetras(evt); // VALIDAR SI ES UNA LETRA
+        }//GEN-LAST:event_txtNombresKeyTyped
+
+        private void txtApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyTyped
+		// TODO add your handling code here:
+		validar.validarLetras(evt); // VALIDAR SI ES UNA LETRA
+        }//GEN-LAST:event_txtApellidosKeyTyped
+
+        private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+		// TODO add your handling code here:
+		validar.validarNumeros(evt); //VALIDAR SI ES UN NUMERO
+        }//GEN-LAST:event_txtTelefonoKeyTyped
+
+        private void btnEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioActionPerformed
+		// TODO add your handling code here:
+		//IDENTIFICAR EL USUARIO A ELIMINAR
+		int usuario = Integer.parseInt(txtIdUsuario.getText());
+		//PREGUNTAR SI ESTÁ SEGURO QUE DESEA ELIMINAR ESE USUARIO
+		int res = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar este usuario?", "Eliminar usuario",
+			JOptionPane.YES_NO_OPTION);
+		if (res == 0) {
+			try {
+				//ELIMINAR EL USUARIO
+				FacadeUsuarios.deleteUsuario(usuario);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(this, "ERROR: No se ha podido establecer conexión con la base de datos.",
+					"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+        }//GEN-LAST:event_btnEliminarUsuarioActionPerformed
+
+        private void btnGuardarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEquipoActionPerformed
+		// TODO add your handling code here:
+		//CREAR UNA REFERENCIA A GUARDAR CAMBOS PARA GUARDAR EQUIPOS
+		guardarCambios gc = new guardarCambios();
+		//HACER REFERENCIA A LA CLASE VALIDAR
+		validar nuevo = new validar();
+		if (nuevo.nuevoEquipo()) {
+			try {
+				//GUARDAR UN EQUIPO NUEVO
+				gc.guardarEquipo();
+				//ACTUALIZAR LA TABLA DE EQUIPOS
+				IniciarDatos iniciar = new IniciarDatos();
+				iniciar.IniciarDatosEqipos((DefaultTableModel) tblEquipos.getModel());
+			} catch (Exception e) {
+				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO EQUIPO
+				JOptionPane.showMessageDialog(this,
+					"ERROR: No se ha podido establecer conexión con la base de datos.",
+					"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		} else {
+			try {
+				//ACTUALIZAR UN EQUIPO
+				gc.guardarEquipo();
+				//ACTUALIZAR LA TABLA DE EQUIPOS
+				IniciarDatos iniciar = new IniciarDatos();
+				iniciar.IniciarDatosEqipos((DefaultTableModel) tblEquipos.getModel());
+			} catch (Exception e) {
+				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO USUARIO
+				JOptionPane.showMessageDialog(this,
+					"ERROR: No se ha podido establecer conexión con la base de datos.",
+					"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+        }//GEN-LAST:event_btnGuardarEquipoActionPerformed
+
+        private void btnEliminarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEquipoActionPerformed
+		// TODO add your handling code here:
+		//IDENTIFICAR EL USUARIO A ELIMINAR
+		int equipo = Integer.parseInt(txtIdEquipo.getText());
+		//PREGUNTAR SI ESTÁ SEGURO QUE DESEA ELIMINAR ESE EQUIPO
+		int res = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar este equipo?", "Eliminar Equipo",
+			JOptionPane.YES_NO_OPTION);
+		if (res == 0) {
+			try {
+				//ELIMINAR EL EQUIPO
+				FacadeEquipos.deleteEquipo(equipo);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(this, "ERROR: No se ha podido establecer conexión con la base de datos.",
+					"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+        }//GEN-LAST:event_btnEliminarEquipoActionPerformed
+
+        private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
+		// TODO add your handling code here:
+		validar.validarLetras(evt);
+        }//GEN-LAST:event_txtDescripcionKeyTyped
+
+        private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+		// TODO add your handling code here:
+		validar.validarNumeros(evt);
+        }//GEN-LAST:event_txtCantidadKeyTyped
+
+	//DECLARAR VARAIABLES PARA IDENTIFICAR EL EQUIPO Y USARIO AL CUAL VAMOS A HACER UN PRESTAMOS
+	public Equipo equipoPrestamo = null;
+	public Usuario usuarioPrestamo = null;
+
+        private void btnGuardarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPrestamoActionPerformed
+		// TODO add your handling code here:
+		//CREAR UNA REFERENCIA A NUESTRO GUARDAR CAMIBOS
+		guardarCambios gc = new guardarCambios();
+		//HACER REFERENCIA A LA CLASE VALIDAR
+		validar nuevo = new validar();
+		if (nuevo.nuevoPrestamo()) {
+			try {
+				//GUARDAR UN NUEVO PRESTAMO
+				gc.guardarPrestamo();
+				//ACTUALIZAR LOS DATOS LA TABLA PRESTAMOS
+				IniciarDatos iniciar = new IniciarDatos();
+				iniciar.IniciarDatosPrestamos((DefaultTableModel) tblPrestamo.getModel());
+			} catch (Exception e) {
+				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO PRESTAMO
+				JOptionPane.showMessageDialog(this,
+					"ERROR: No se ha podido establecer conexión con la base de datos.",
+					"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		} else {
+			try {
+				//ACTUALIZAR LOS DATOS DEL PRESTAMO
+				gc.actualizarPrestamo();
+				//ACTUALIZAR LOS DATOS LA TABLA PRESTAMOS
+				IniciarDatos iniciar = new IniciarDatos();
+				iniciar.IniciarDatosPrestamos((DefaultTableModel) tblPrestamo.getModel());
+			} catch (Exception e) {
+				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO USUARIO
+				JOptionPane.showMessageDialog(this, 
+					"ERROR: No se ha podido establecer conexión con la base de datos.",
+					"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+        }//GEN-LAST:event_btnGuardarPrestamoActionPerformed
+
+        private void btnEliminarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPrestamoActionPerformed
+		// TODO add your handling code here:
+		//IDENTIFICAR EL PRESTAMO A ELIMINAR
+		int prestamo = Integer.parseInt(txtIdPrestamo.getText());
+		//PREGUNTAR SI ESTÁ SEGURO QUE DESEA ELIMINAR ESE PRESTAMO
+		int res = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar este présamo?", "Eliminar Prestamo",
+			JOptionPane.YES_NO_OPTION);
+		if (res == 0) {
+			try {
+				//ELIMINAR EL PRESTAMO
+				FacadePrestamos.deletePrestamo(prestamo);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(this, "ERROR: No se ha podido establecer conexión con la base de datos.",
+					"Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+        }//GEN-LAST:event_btnEliminarPrestamoActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -850,17 +1311,16 @@ public class PrestamosITCA extends javax.swing.JFrame {
         private javax.swing.JButton btnBuscarPrestamo;
         private javax.swing.JButton btnBuscarUsuario;
         private javax.swing.JButton btnEliminarEquipo;
+        private javax.swing.JButton btnEliminarPrestamo;
         private javax.swing.JButton btnEliminarUsuario;
+        private javax.swing.JButton btnEscogerEquipo;
+        private javax.swing.JButton btnEscogerUsuario;
         private javax.swing.JButton btnGuardarEquipo;
+        private javax.swing.JButton btnGuardarPrestamo;
         private javax.swing.JButton btnGuardarUsuario;
         private javax.swing.JButton btnLimpiarEquipo;
+        private javax.swing.JButton btnLimpiarPrestamo;
         private javax.swing.JButton btnLimpiarUsuario;
-        private javax.swing.JButton jButton14;
-        private javax.swing.JButton jButton15;
-        private javax.swing.JButton jButton16;
-        private javax.swing.JButton jButton3;
-        private javax.swing.JButton jButton6;
-        private javax.swing.JButton jButton7;
         private javax.swing.JLabel jLabel1;
         private javax.swing.JLabel jLabel10;
         private javax.swing.JLabel jLabel11;
@@ -876,8 +1336,22 @@ public class PrestamosITCA extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel20;
         private javax.swing.JLabel jLabel21;
         private javax.swing.JLabel jLabel22;
+        private javax.swing.JLabel jLabel23;
         private javax.swing.JLabel jLabel24;
+        private javax.swing.JLabel jLabel25;
+        private javax.swing.JLabel jLabel26;
+        private javax.swing.JLabel jLabel27;
+        private javax.swing.JLabel jLabel28;
+        private javax.swing.JLabel jLabel29;
         private javax.swing.JLabel jLabel3;
+        private javax.swing.JLabel jLabel30;
+        private javax.swing.JLabel jLabel31;
+        private javax.swing.JLabel jLabel32;
+        private javax.swing.JLabel jLabel33;
+        private javax.swing.JLabel jLabel34;
+        private javax.swing.JLabel jLabel35;
+        private javax.swing.JLabel jLabel36;
+        private javax.swing.JLabel jLabel37;
         private javax.swing.JLabel jLabel4;
         private javax.swing.JLabel jLabel5;
         private javax.swing.JLabel jLabel6;
@@ -900,29 +1374,29 @@ public class PrestamosITCA extends javax.swing.JFrame {
         private javax.swing.JTable tblPrestamo;
         private javax.swing.JTable tblReporte;
         private javax.swing.JTable tblUsuarios;
-        private javax.swing.JTextField txtApellidos;
+        public javax.swing.JTextField txtApellidos;
         private javax.swing.JTextField txtBuscarEquipo;
         private javax.swing.JTextField txtBuscarPrestamo;
         private javax.swing.JTextField txtBuscarUsuario;
-        private javax.swing.JTextField txtCantidad;
-        private javax.swing.JTextField txtCantidadEquipos;
-        private javax.swing.JTextField txtCedula;
-        private javax.swing.JTextField txtColor;
-        private javax.swing.JTextField txtDepartamento;
-        private javax.swing.JTextField txtDescripcion;
-        private javax.swing.JTextField txtDireccion;
-        private javax.swing.JTextField txtEmail;
-        private javax.swing.JTextField txtEquipo;
-        private javax.swing.JTextField txtFechaEntrega;
-        private javax.swing.JTextField txtFechaSalida;
-        private javax.swing.JTextField txtIdEquipo;
-        private javax.swing.JTextField txtIdPrestamo;
-        private javax.swing.JTextField txtIdUsuario;
-        private javax.swing.JTextField txtMarca;
-        private javax.swing.JTextField txtModelo;
-        private javax.swing.JTextField txtNombres;
-        private javax.swing.JTextField txtTelefono;
-        private javax.swing.JTextField txtUsuario;
+        public javax.swing.JTextField txtCantidad;
+        public javax.swing.JTextField txtCantidadEquipos;
+        public javax.swing.JTextField txtCedula;
+        public javax.swing.JTextField txtColor;
+        public javax.swing.JTextField txtDepartamento;
+        public javax.swing.JTextField txtDescripcion;
+        public javax.swing.JTextField txtDireccion;
+        public javax.swing.JTextField txtEmail;
+        public javax.swing.JTextField txtEquipo;
+        public javax.swing.JTextField txtFechaEntrega;
+        public javax.swing.JTextField txtFechaSalida;
+        public javax.swing.JTextField txtIdEquipo;
+        public javax.swing.JTextField txtIdPrestamo;
+        public javax.swing.JTextField txtIdUsuario;
+        public javax.swing.JTextField txtMarca;
+        public javax.swing.JTextField txtModelo;
+        public javax.swing.JTextField txtNombres;
+        public javax.swing.JTextField txtTelefono;
+        public javax.swing.JTextField txtUsuario;
         // End of variables declaration//GEN-END:variables
 
 //public void IniciarDatosUsuarios() {
@@ -940,5 +1414,4 @@ public class PrestamosITCA extends javax.swing.JFrame {
 //				}
 //			);
 //	}
-
 }

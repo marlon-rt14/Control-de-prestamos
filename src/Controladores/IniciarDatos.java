@@ -5,6 +5,9 @@
  */
 package Controladores;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import modelo.FacadeEquipos;
 import modelo.FacadePrestamos;
