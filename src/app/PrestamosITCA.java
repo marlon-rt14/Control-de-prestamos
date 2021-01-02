@@ -151,7 +151,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 jLabel1 = new javax.swing.JLabel();
                 jLabel3 = new javax.swing.JLabel();
                 jLabel4 = new javax.swing.JLabel();
-                txtAuxiliar = new javax.swing.JTextField();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setTitle("Préstamos ITCA");
@@ -971,8 +970,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/escudo.jpeg"))); // NOI18N
                 jLabel4.setToolTipText("");
 
-                txtAuxiliar.setText("jTextField1");
-
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -983,10 +980,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel3)
-                                                        .addComponent(jLabel1)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(127, 127, 127)
-                                                                .addComponent(txtAuxiliar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addComponent(jLabel1))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel4))
                                         .addComponent(jTabbedPane1))
@@ -1000,9 +994,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel3)
-                                                .addGap(26, 26, 26)
-                                                .addComponent(txtAuxiliar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jLabel3))
                                         .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTabbedPane1)
@@ -1152,14 +1144,16 @@ public class PrestamosITCA extends javax.swing.JFrame {
 		//IDENTIFICAR EL USUARIO A ELIMINAR
 		int usuario = Integer.parseInt(txtIdUsuario.getText());
 		//PREGUNTAR SI ESTÁ SEGURO QUE DESEA ELIMINAR ESE USUARIO
-		int res = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar este usuario?", "Eliminar usuario",
+		int res = JOptionPane.showConfirmDialog(this, 
+			"¿Está seguro que desea eliminar este usuario?", "Eliminar usuario",
 			JOptionPane.YES_NO_OPTION);
 		if (res == 0) {
 			try {
 				//ELIMINAR EL USUARIO
 				FacadeUsuarios.deleteUsuario(usuario);
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(this, "ERROR: No se ha podido establecer conexión con la base de datos.",
+				JOptionPane.showMessageDialog(this, 
+					"ERROR: No se ha podido establecer conexión con la base de datos.",
 					"Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -1205,14 +1199,16 @@ public class PrestamosITCA extends javax.swing.JFrame {
 		//IDENTIFICAR EL USUARIO A ELIMINAR
 		int equipo = Integer.parseInt(txtIdEquipo.getText());
 		//PREGUNTAR SI ESTÁ SEGURO QUE DESEA ELIMINAR ESE EQUIPO
-		int res = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar este equipo?", "Eliminar Equipo",
+		int res = JOptionPane.showConfirmDialog(this, 
+			"¿Está seguro que desea eliminar este equipo?", "Eliminar Equipo",
 			JOptionPane.YES_NO_OPTION);
 		if (res == 0) {
 			try {
 				//ELIMINAR EL EQUIPO
 				FacadeEquipos.deleteEquipo(equipo);
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(this, "ERROR: No se ha podido establecer conexión con la base de datos.",
+				JOptionPane.showMessageDialog(this, 
+					"ERROR: No se ha podido establecer conexión con la base de datos.",
 					"Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -1291,14 +1287,19 @@ public class PrestamosITCA extends javax.swing.JFrame {
 		//IDENTIFICAR EL PRESTAMO A ELIMINAR
 		int prestamo = Integer.parseInt(txtIdPrestamo.getText());
 		//PREGUNTAR SI ESTÁ SEGURO QUE DESEA ELIMINAR ESE PRESTAMO
-		int res = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar este présamo?", "Eliminar Prestamo",
+		int res = JOptionPane.showConfirmDialog(this, 
+			"¿Está seguro que desea eliminar este présamo?", "Eliminar Prestamo",
 			JOptionPane.YES_NO_OPTION);
 		if (res == 0) {
 			try {
 				//ELIMINAR EL PRESTAMO
 				FacadePrestamos.deletePrestamo(prestamo);
+				//DEVUELVA LOS EQUIPOS
+				guardarCambios gc = new guardarCambios();
+				gc.devolverEquipos();
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(this, "ERROR: No se ha podido establecer conexión con la base de datos.",
+				JOptionPane.showMessageDialog(this, 
+					"ERROR: No se ha podido establecer conexión con la base de datos.",
 					"Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -1429,7 +1430,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
         private javax.swing.JTable tblReporte;
         private javax.swing.JTable tblUsuarios;
         public javax.swing.JTextField txtApellidos;
-        public javax.swing.JTextField txtAuxiliar;
         private javax.swing.JTextField txtBuscarEquipo;
         private javax.swing.JTextField txtBuscarPrestamo;
         private javax.swing.JTextField txtBuscarUsuario;
