@@ -1079,19 +1079,19 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
         private void btnLimpiarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarUsuarioActionPerformed
 		// TODO add your handling code here:
-		limpiar limpiarDatos = new limpiar();//HACER REFERENCIA A LA CLASE LIMPIAR
+		limpiar limpiarDatos = new limpiar(this);//HACER REFERENCIA A LA CLASE LIMPIAR
 		limpiarDatos.limipiarUsuarios();//LIMPIAR LOS "TEXTBOX" DE USUARIOS
         }//GEN-LAST:event_btnLimpiarUsuarioActionPerformed
 
         private void btnLimpiarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarEquipoActionPerformed
 		// TODO add your handling code here:
-		limpiar limpiarDatos = new limpiar();//HACER REFERENCIA A LA CLASE LIMPIAR
+		limpiar limpiarDatos = new limpiar(this);//HACER REFERENCIA A LA CLASE LIMPIAR
 		limpiarDatos.limipiarEquipos();//LIMPIAR LOS "TEXTBOX" DE EQUIPOS
         }//GEN-LAST:event_btnLimpiarEquipoActionPerformed
 
         private void btnLimpiarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPrestamoActionPerformed
 		// TODO add your handling code here:
-		limpiar limpiarDatos = new limpiar();//HACER REFERENCIA A LA CLASE LIMPIAR
+		limpiar limpiarDatos = new limpiar(this);//HACER REFERENCIA A LA CLASE LIMPIAR
 		limpiarDatos.limpiarPrestamos();//LIMPIAR LOS "TEXTBOX" DE PRESTAMOS
         }//GEN-LAST:event_btnLimpiarPrestamoActionPerformed
 
