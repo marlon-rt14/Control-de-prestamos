@@ -284,13 +284,11 @@
                               </Group>
                               <Component id="txtApellidos" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="btnEliminarUsuario" alignment="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="btnLimpiarUsuario" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnLimpiarUsuario" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnGuardarUsuario" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="btnEliminarUsuario" min="-2" pref="91" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -744,13 +742,11 @@
                               </Group>
                               <Component id="txtModelo" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="btnEliminarEquipo" alignment="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="btnLimpiarEquipo" alignment="1" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnLimpiarEquipo" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnGuardarEquipo" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="btnEliminarEquipo" min="-2" pref="91" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -1087,9 +1083,9 @@
                                           <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="btnEliminarPrestamo" alignment="0" pref="0" max="32767" attributes="0"/>
-                                              <Component id="btnLimpiarPrestamo" alignment="1" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="btnLimpiarPrestamo" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnEliminarPrestamo" min="-2" pref="105" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="btnGuardarPrestamo" min="-2" max="-2" attributes="0"/>

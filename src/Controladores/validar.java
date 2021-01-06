@@ -4,17 +4,36 @@ import app.PrestamosITCA;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class validar extends PrestamosITCA {
+public class validar {
 
-	boolean nuevo;
-
-	public void validar() { // CADA VEZ QUE SE HAGA UNA REFERENCIA A LA CLASE INICIAR EN FALSE
-		nuevo = false;
+	public validar() {
 	}
 
-	public static void validarNumeros(java.awt.event.KeyEvent evt) {
+	public void validarNumeros(java.awt.event.KeyEvent evt) {
 		// SI CADA TECLA PRESIONADA ES DIFERENTE DE UN NUMERO EL EVENTO SE CONSUME Y ESA TECLA NO SE ESCRIBIRA
 		if (!Character.isDigit(evt.getKeyChar())) {
+			evt.consume();
+		}
+	}
+
+	public void validarTelefono(java.awt.event.KeyEvent evt, String telefono) {
+		if (telefono.trim().length() < 10) {
+			// SI CADA TECLA PRESIONADA ES DIFERENTE DE UN NUMERO EL EVENTO SE CONSUME Y ESA TECLA NO SE ESCRIBIRA
+			if (!Character.isDigit(evt.getKeyChar())) {
+				evt.consume();
+			}
+		} else {
+			evt.consume();
+		}
+	}
+
+	public void validarCedula(java.awt.event.KeyEvent evt, String cedula) {
+		if (cedula.trim().length() < 10) {
+			// SI CADA TECLA PRESIONADA ES DIFERENTE DE UN NUMERO EL EVENTO SE CONSUME Y ESA TECLA NO SE ESCRIBIRA
+			if (!Character.isDigit(evt.getKeyChar())) {
+				evt.consume();
+			}
+		} else {
 			evt.consume();
 		}
 	}
@@ -26,121 +45,87 @@ public class validar extends PrestamosITCA {
 		}
 	}
 
-	public boolean nuevoUsuario() {
+	public boolean nuevoUsuario(String id, String cedula, String nombres, String apellidos) {
 		//VALIDAR EL ID PARA CREAR UN NUEVO USUARIO O ACTUALIZAR UNO EXISTENTE
-		if (txtIdUsuario.getText().isEmpty()) { //PREGUNTAR SI EL CAMPO ID ESTA VACIO
+		if (id.trim().length() == 0) { //PREGUNTAR SI EL CAMPO ID ESTA VACIO
 			//VALIDAR LOS CAMPOS A GUARDAR
-			if (txtCedula.getText().trim().length() == 10 && txtNombres.getText().trim().length() >= 3
-				&& txtApellidos.getText().trim().length() >= 3) {
+			if (cedula.trim().length() > 0 && nombres.trim().length() >= 3
+				&& apellidos.trim().length() >= 3) {
 				//RETORNAR NUEVO COMO VERDADERO
-				return nuevo = true;
+				return true;
 			} else {
+				System.out.println("Cedula = " + cedula);
+				System.out.println("Nombres = " + nombres);
+				System.out.println("Apellidos = " + apellidos);
 				//MOSTRAR MENSAJE DE ADVERTENCIA DE DATOS INCORRECTOS
-				JOptionPane.showMessageDialog(this,
+				JOptionPane.showMessageDialog(null,
 					"Asegúrese de ingresar los datos correctos en los campos obligatorios (*).",
 					"Información", JOptionPane.WARNING_MESSAGE);
 			}
 		}
-		if (!txtIdUsuario.getText().isEmpty()) {//CASO CONTRARIO PARA ACTUALIZAR LOS DATOS DEL USUARIO
-			//VALIDAR LOS CAMPOS A GUARDAR
-			if (txtCedula.getText().trim().length() == 10 && txtNombres.getText().trim().length() >= 3
-				&& txtApellidos.getText().trim().length() >= 3) {
-				return nuevo;
-			} else {
-				//MOSTRAR MENSAJE DE ADVERTENCIA DE DATOS INCORRECTOS
-				JOptionPane.showMessageDialog(this,
-					"Asegúrese de ingresar los datos correctos en los campos obligatorios (*).",
-					"Información", JOptionPane.WARNING_MESSAGE);
-			}
-		}
-		return nuevo;
+		return false;
 	}
 
-	public boolean nuevoEquipo() {
+	public boolean nuevoEquipo(String id, String descripcion, String marca, String modelo,
+		String color, int cantidad, String departamento) {
 		//VALIDAR EL ID PARA CREAR UN NUEVO EQUIPO O ACTUALIZAR UNO EXISTENTE
-		if (txtIdEquipo.getText().isEmpty()) { //PREGUNTAR SI EL CAMPO ID ESTA VACIO
+		if (id.trim().length() == 0) { //PREGUNTAR SI EL CAMPO ID ESTA VACIO
 			//VALIDAR LOS CAMPOS A GUARDAR
-			if (txtDescripcion.getText().trim().length() >= 2 && txtMarca.getText().trim().length() >= 2
-				&& txtModelo.getText().trim().length() >= 3 && txtColor.getText().trim().length() >= 2
-				&& !txtCantidad.getText().isEmpty() && txtDepartamento.getText().trim().length() >= 4) {
+			if (descripcion.trim().length() >= 2
+				&& marca.trim().length() >= 2
+				&& modelo.trim().length() >= 3
+				&& color.trim().length() >= 2
+				&& cantidad != 0
+				&& departamento.trim().length() >= 4) {
 				//RETORNA VERDADEO
-				return nuevo = true;
+				return true;
 			} else {
 				//MOSTRAR MENSAJE DE ADVERTENCIA DE DATOS INCORRECTOS
-				JOptionPane.showMessageDialog(this,
+				JOptionPane.showMessageDialog(null,
 					"Asegúrese de ingresar los datos correctos en los campos obligatorios (*).",
 					"Información", JOptionPane.WARNING_MESSAGE);
 			}
 		}
-		if (!txtIdEquipo.getText().isEmpty()) {//CASO CONTRARIO PARA ACTUALIZAR LOS DATOS DEL EQUIPO
-			//VALIDAR LOS CAMPOS A GUARDAR
-			if (txtDescripcion.getText().trim().length() >= 2 && txtMarca.getText().trim().length() >= 2
-				&& txtModelo.getText().trim().length() >= 3 && txtColor.getText().trim().length() >= 2
-				&& !txtCantidad.getText().isEmpty() && txtDepartamento.getText().trim().length() >= 4) {
-				//RETORNAR FALSE
-				return nuevo;
-			} else {
-				//MOSTRAR MENSAJE DE ADVERTENCIA DE DATOS INCORRECTOS
-				JOptionPane.showMessageDialog(this,
-					"Asegúrese de ingresar los datos correctos en los campos obligatorios (*).",
-					"Información", JOptionPane.WARNING_MESSAGE);
-			}
-		}
-		return nuevo;
+		return false;
 	}
 
-	public boolean nuevoPrestamo() {
+	public boolean nuevoPrestamo(String id, String equipo, String usuario, int cantidad_equipos,
+		String fecha_salida, String fecha_entrega) {
 		//VALIDAR EL ID PARA CREAR UN NUEVO PRESTAMO O ACTUALIZAR UNO EXISTENTE
-		if (txtIdPrestamo.getText().isEmpty()) { //PREGUNTAR SI EL CAMPO ID ESTA VACIO
+		if (id.trim().length() == 0) { //PREGUNTAR SI EL CAMPO ID ESTA VACIO
 			//VALIDAR LOS CAMPOS A GUARDAR
-			if (!txtEquipo.getText().isEmpty()) {
-				if (!txtUsuario.getText().isEmpty()) {
-					if (!txtCantidadEquipos.getText().isEmpty()
-						&& !txtFechaSalida.getText().isEmpty()
-						&& !txtFechaEntrega.getText().isEmpty()) {
-						return nuevo = true;
+			if (!equipo.isEmpty()) {
+				if (!usuario.isEmpty()) {
+					if (cantidad_equipos != 0
+						&& fecha_salida.trim().length() == 10
+						&& fecha_entrega.trim().length() == 10) {
+						return true;
 
 					} else {
 						//MOSTRAR MENSAJE DE ADVERTENCIA DE DATOS INCORRECTOS
-						JOptionPane.showMessageDialog(this, "Asegúrese de ingresar los datos correctos en los campos obligatorios (*).",
-							"Información", JOptionPane.WARNING_MESSAGE);
-					}
-				} else {
-					//MOSTRAR MENSAJE QUE ESE USUARIO NO EXISTE
-					JOptionPane.showMessageDialog(this, "El usuario que ha ingresado no existe!",
-						"Advertencia", JOptionPane.WARNING_MESSAGE);
-				}
-			} else {
-				//MOSTRAR MENSAJE QUE ESE EQUIPO NO EXISTE
-				JOptionPane.showMessageDialog(this, "El equipo que ha ingresado no existe!",
-					"Advertencia", JOptionPane.WARNING_MESSAGE);
-			}
-		}
-		if (!txtIdPrestamo.getText().isEmpty()) {//CASO CONTRARIO PARA ACTUALIZAR LOS DATOS DEL PRESTAMO
-			//VALIDAR LOS CAMPOS A GUARDAR
-			if (!txtEquipo.getText().isEmpty()) {
-				if (!txtUsuario.getText().isEmpty()) {
-					if (!txtCantidadEquipos.getText().isEmpty()
-						&& !txtFechaSalida.getText().isEmpty()
-						&& !txtFechaEntrega.getText().isEmpty()) {
-						return nuevo;
-					} else {
-						//MOSTRAR MENSAJE DE ADVERTENCIA DE DATOS INCORRECTOS
-						JOptionPane.showMessageDialog(this,
+						JOptionPane.showMessageDialog(null,
 							"Asegúrese de ingresar los datos correctos en los campos obligatorios (*).",
 							"Información", JOptionPane.WARNING_MESSAGE);
 					}
 				} else {
 					//MOSTRAR MENSAJE QUE ESE USUARIO NO EXISTE
-					JOptionPane.showMessageDialog(this, "El usuario que ha ingresado no existe!",
+					JOptionPane.showMessageDialog(null, "El usuario que ha ingresado no existe!",
 						"Advertencia", JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
 				//MOSTRAR MENSAJE QUE ESE EQUIPO NO EXISTE
-				JOptionPane.showMessageDialog(this, "El equipo que ha ingresado no existe!",
+				JOptionPane.showMessageDialog(null, "El equipo que ha ingresado no existe!",
 					"Advertencia", JOptionPane.WARNING_MESSAGE);
 			}
 		}
-		return nuevo;
+		return false;
+	}
+
+	// VLIDAR NUEVA CANTIDAD DE EQUIPOS PRESTADOS
+	public boolean numEquiposPrestados(int cantidadNueva, int cantidadActual) {
+		if (cantidadNueva <= cantidadActual) {
+			return true;
+		}
+		return false;
 	}
 }

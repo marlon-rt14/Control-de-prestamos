@@ -7,6 +7,7 @@ package app;
 
 import Controladores.AceptarDatos;
 import Controladores.IniciarDatos;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.FacadeUsuarios;
 import modelo.entidades.Usuario;
@@ -25,20 +26,21 @@ public class RegistroUsuarios extends javax.swing.JDialog {
 		initComponents();
 		iniciarDatos();
 	}
-	
+
 	PrestamosITCA parentFrame;
-	public RegistroUsuarios(PrestamosITCA parentFrame){
+
+	public RegistroUsuarios(PrestamosITCA parentFrame) {
 		this.parentFrame = parentFrame;
 		initComponents();
 		iniciarDatos();
 	}
-	
-	Usuario usuario;
-	
-	public void iniciarDatos(){
+
+	Usuario usuario = null;
+
+	public void iniciarDatos() {
 		//LLENAR LA TABLA CON LOS DATOS DE LO USUARIOS
 		IniciarDatos iniciar = new IniciarDatos();
-		iniciar.IniciarDatosUsuarios((DefaultTableModel)tblUsuarios.getModel());
+		iniciar.IniciarDatosUsuarios((DefaultTableModel) tblUsuarios.getModel());
 	}
 
 	/**
@@ -128,22 +130,26 @@ public class RegistroUsuarios extends javax.swing.JDialog {
         }// </editor-fold>//GEN-END:initComponents
 
         private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
-                // TODO add your handling code here:
-                //OBTENER EL VALOR DE LA CELDA "ID" DE LA FILA SELECCIONADA DE LA TABLA USUARIOS
-                int id = Integer.parseInt(String.valueOf(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 0)));
-                //OBTENER EL UN USUARIO EN BASE A NUESTRO ID
-                usuario = FacadeUsuarios.getUsuario(id);
+		// TODO add your handling code here:
+		//OBTENER EL VALOR DE LA CELDA "ID" DE LA FILA SELECCIONADA DE LA TABLA USUARIOS
+		int id = Integer.parseInt(String.valueOf(tblUsuarios.getValueAt(tblUsuarios.getSelectedRow(), 0)));
+		//OBTENER EL UN USUARIO EN BASE A NUESTRO ID
+		usuario = FacadeUsuarios.getUsuario(id);
         }//GEN-LAST:event_tblUsuariosMouseClicked
 
         private void btnAceptarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarUsuarioActionPerformed
-                // TODO add your handling code here:
-                //ENVIAR EL USUARIO A LA CLASE ACEPTAR DATOS PARA QUE SEA USADO POR LA CLASE PRESTAMOS ITCA
-                //HACER REFERENCIA A LA CLASE ACEPTAR DATOS
-                AceptarDatos aceptar = new AceptarDatos(usuario);
-                aceptar.registrarUsuario();
-		parentFrame.txtUsuario.setText(usuario.getCedula());
-                //CERRAR ESTA VENTANA
-                this.dispose();
+		// TODO add your handling code here:
+		//ENVIAR EL USUARIO A LA CLASE ACEPTAR DATOS PARA QUE SEA USADO POR LA CLASE PRESTAMOS ITCA
+		//HACER REFERENCIA A LA CLASE ACEPTAR DATOS
+		if (usuario != null) { //VALIDAR CUANDO NO SE HAYA SELECCIONADO NINGUN USUARIO
+			AceptarDatos aceptar = new AceptarDatos(usuario);
+			aceptar.registrarUsuario();
+			parentFrame.txtUsuario.setText(usuario.getCedula());
+			//CERRAR ESTA VENTANA
+			this.dispose();
+		} else {
+			JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún usuario.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+		}
         }//GEN-LAST:event_btnAceptarUsuarioActionPerformed
 
 	/**

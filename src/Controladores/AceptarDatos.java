@@ -13,24 +13,21 @@ public class AceptarDatos extends PrestamosITCA{
 	Equipo equipo;
 
 	//SI EL CONSTRUCTOR RECIBE COMO PARAMETRO UN USUARIO INICIA USUARIO CON USUARIO
-	public AceptarDatos(Usuario usuario) {
-		this.usuario = usuario;
+	public AceptarDatos(Usuario usu) {
+		this.usuario = usu;
 	}
 	
 	//SI EL CONSTRUCTOR RECIBE COMO PARAMETRO UN EQUIPO INICIA EQUIPO CON EQUIPO
-	public AceptarDatos(Equipo equipo){
-		this.equipo = equipo;
+	public AceptarDatos(Equipo equi){
+		this.equipo = equi;
 	}
 	
 	public void registrarUsuario(){
-		setUsuarioPrestamo(this.usuario);
-		//txtUsuario.setText(usuarioPrestamo.getCedula());
+		setUsuarioPrestamo(usuario);
 	}
 	
 	public void registrarEquipo(){
-		setEquipoPrestamo(this.equipo);
-		//System.out.println("El dato es: " + getEquipoPrestamo().getDescripcion());
-		//txtEquipo.setText(getEquipoPrestamo().getDescripcion());
+		setEquipoPrestamo(equipo);
 	}
 	
 }

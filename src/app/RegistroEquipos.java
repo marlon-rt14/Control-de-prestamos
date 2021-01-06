@@ -7,6 +7,7 @@ package app;
 
 import Controladores.AceptarDatos;
 import Controladores.IniciarDatos;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.FacadeEquipos;
 import modelo.FacadeUsuarios;
@@ -36,12 +37,12 @@ public class RegistroEquipos extends javax.swing.JDialog {
 		iniciarDatos();
 	}
 
-	Equipo equipo;
-	
-	public void iniciarDatos(){
+	Equipo equipo = null;
+
+	public void iniciarDatos() {
 		//LLENAR LA TABLA CON LOS DATOS DE LO USUARIOS
 		IniciarDatos iniciar = new IniciarDatos();
-		iniciar.IniciarDatosEqipos((DefaultTableModel)tblEquipos.getModel());
+		iniciar.IniciarDatosEqipos((DefaultTableModel) tblEquipos.getModel());
 	}
 
 	/**
@@ -140,11 +141,15 @@ public class RegistroEquipos extends javax.swing.JDialog {
 		// TODO add your handling code here:
 		//ENVIAR EL EQUIPO A LA CLASE ACEPTAR DATOS PARA QUE SEA USADO POR LA CLASE PRESTAMOS ITCA
 		//HACER REFERENCIA A LA CLASE ACEPTAR DATOS
-		AceptarDatos aceptar = new AceptarDatos(equipo);
-		aceptar.registrarEquipo();
-		parentFrame.txtEquipo.setText(equipo.getDescripcion());
-		//CERRAR ESTA VENTANA
-		this.dispose();
+		if (equipo != null) { //VALIDAR EN CASO DE QUE NO SE HAYA SELECCIONADO NINGUN ITEM
+			AceptarDatos aceptar = new AceptarDatos(equipo);
+			aceptar.registrarEquipo();
+			parentFrame.txtEquipo.setText(equipo.getDescripcion());
+			//CERRAR ESTA VENTANA
+			this.dispose();
+		} else {
+			JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún equipo.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+		}
         }//GEN-LAST:event_btnAceptarEquipoActionPerformed
 
 	/**

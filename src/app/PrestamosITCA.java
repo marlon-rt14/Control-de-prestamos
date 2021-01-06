@@ -327,11 +327,10 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                                 .addComponent(jLabel26))
                                         .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel4Layout.createSequentialGroup()
-                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                                        .addComponent(btnLimpiarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(btnLimpiarUsuario)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(btnGuardarUsuario)))
+                                                .addComponent(btnGuardarUsuario))
+                                        .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 jPanel4Layout.setVerticalGroup(
@@ -609,11 +608,10 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                                 .addComponent(jLabel29))
                                         .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel6Layout.createSequentialGroup()
-                                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(btnEliminarEquipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                                        .addComponent(btnLimpiarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(btnLimpiarEquipo)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(btnGuardarEquipo)))
+                                                .addComponent(btnGuardarEquipo))
+                                        .addComponent(btnEliminarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 jPanel6Layout.setVerticalGroup(
@@ -805,9 +803,9 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jLabel34))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
-                                                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                                        .addComponent(btnEliminarPrestamo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                                                        .addComponent(btnLimpiarPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(btnLimpiarPrestamo)
+                                                                        .addComponent(btnEliminarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                 .addComponent(btnGuardarPrestamo)
                                                                 .addGap(21, 21, 21))
@@ -1093,10 +1091,15 @@ public class PrestamosITCA extends javax.swing.JFrame {
 		guardarCambios gc = new guardarCambios();
 		//HACE REFERENCIA A LA CLASE VALIDAR
 		validar nuevo = new validar();
-		if (nuevo.nuevoUsuario()) {
+		if (nuevo.nuevoUsuario(txtIdUsuario.getText(), txtCedula.getText(),
+			txtNombres.getText(), txtApellidos.getText())) {
 			try {
 				//GUARDAR LOS CAMBIOS
-				gc.guardarUsuario();
+				gc.guardarUsuario(txtCedula.getText(), txtNombres.getText(), txtApellidos.getText(),
+					txtTelefono.getText(), txtEmail.getText(), txtDireccion.getText());
+				//ACTUALIZAR LA TABLA USUARIOS
+				IniciarDatos iniciar = new IniciarDatos();
+				iniciar.IniciarDatosUsuarios((DefaultTableModel) tblUsuarios.getModel());
 			} catch (Exception e) {
 				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO USUARIO
 				JOptionPane.showMessageDialog(this,
@@ -1106,7 +1109,9 @@ public class PrestamosITCA extends javax.swing.JFrame {
 		} else {
 			try {
 				//ACTUALIZAR LOS CAMBIOS
-				gc.actualizarUsuario();
+				gc.actualizarUsuario(Integer.parseInt(txtIdUsuario.getText()),
+					txtCedula.getText(), txtNombres.getText(), txtApellidos.getText(),
+					txtTelefono.getText(), txtEmail.getText(), txtDireccion.getText());
 				//ACTUALIZAR LA TABLA USUARIOS
 				IniciarDatos iniciar = new IniciarDatos();
 				iniciar.IniciarDatosUsuarios((DefaultTableModel) tblUsuarios.getModel());
@@ -1121,7 +1126,8 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
         private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
 		// TODO add your handling code here:
-		validar.validarNumeros(evt); // VALIDAR SI ES UN NUMERO
+		validar val = new validar(); // VALIDAR SI ES UN NUMERO
+		val.validarCedula(evt, txtCedula.getText());
         }//GEN-LAST:event_txtCedulaKeyTyped
 
         private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
@@ -1136,23 +1142,30 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
         private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
 		// TODO add your handling code here:
-		validar.validarNumeros(evt); //VALIDAR SI ES UN NUMERO
+		validar val = new validar();
+		val.validarTelefono(evt, txtTelefono.getText()); //VALIDAR SI ES UN NUMERO
         }//GEN-LAST:event_txtTelefonoKeyTyped
 
         private void btnEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioActionPerformed
 		// TODO add your handling code here:
 		//IDENTIFICAR EL USUARIO A ELIMINAR
-		int usuario = Integer.parseInt(txtIdUsuario.getText());
+		int id_usuario = Integer.parseInt(txtIdUsuario.getText());
 		//PREGUNTAR SI ESTÁ SEGURO QUE DESEA ELIMINAR ESE USUARIO
-		int res = JOptionPane.showConfirmDialog(this, 
+		int res = JOptionPane.showConfirmDialog(this,
 			"¿Está seguro que desea eliminar este usuario?", "Eliminar usuario",
 			JOptionPane.YES_NO_OPTION);
 		if (res == 0) {
 			try {
 				//ELIMINAR EL USUARIO
-				FacadeUsuarios.deleteUsuario(usuario);
+				FacadeUsuarios.deleteUsuario(id_usuario);
+				//ACTUALIZAR LA TABLA DE USUARIOS
+				IniciarDatos iniciar = new IniciarDatos();
+				iniciar.IniciarDatosUsuarios((DefaultTableModel) tblUsuarios.getModel());
+				//LIMPIAR LOS CAMPOS
+				limpiar lim = new limpiar(this);
+				lim.limipiarUsuarios();
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(this, 
+				JOptionPane.showMessageDialog(this,
 					"ERROR: No se ha podido establecer conexión con la base de datos.",
 					"Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -1161,14 +1174,14 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
         private void btnGuardarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEquipoActionPerformed
 		// TODO add your handling code here:
-		//CREAR UNA REFERENCIA A GUARDAR CAMBOS PARA GUARDAR EQUIPOS
+		//LLAMAR A LA CLASE GUARDAR CAMBIOS PARA GUARDAR LOS CAMBIOS
 		guardarCambios gc = new guardarCambios();
-		//HACER REFERENCIA A LA CLASE VALIDAR
+		//HACE REFERENCIA A LA CLASE VALIDAR
 		validar nuevo = new validar();
-		if (nuevo.nuevoEquipo()) {
+		if (nuevo.nuevoEquipo(txtIdEquipo.getText(), txtDescripcion.getText(), txtMarca.getText(), txtModelo.getText(), txtColor.getText(), Integer.parseInt(txtCantidad.getText()), txtDepartamento.getText())) {
 			try {
 				//GUARDAR UN EQUIPO NUEVO
-				gc.guardarEquipo();
+				gc.guardarEquipo(txtDescripcion.getText(), txtMarca.getText(), txtModelo.getText(), txtColor.getText(), Integer.parseInt(txtCantidad.getText()), txtDescripcion.getText());
 				//ACTUALIZAR LA TABLA DE EQUIPOS
 				IniciarDatos iniciar = new IniciarDatos();
 				iniciar.IniciarDatosEqipos((DefaultTableModel) tblEquipos.getModel());
@@ -1181,7 +1194,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
 		} else {
 			try {
 				//ACTUALIZAR UN EQUIPO
-				gc.guardarEquipo();
+				gc.actualizarEquipo(Integer.parseInt(txtIdEquipo.getText()), txtDescripcion.getText(), txtMarca.getText(), txtModelo.getText(), txtColor.getText(), Integer.parseInt(txtCantidad.getText()), txtDepartamento.getText());
 				//ACTUALIZAR LA TABLA DE EQUIPOS
 				IniciarDatos iniciar = new IniciarDatos();
 				iniciar.IniciarDatosEqipos((DefaultTableModel) tblEquipos.getModel());
@@ -1197,17 +1210,17 @@ public class PrestamosITCA extends javax.swing.JFrame {
         private void btnEliminarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEquipoActionPerformed
 		// TODO add your handling code here:
 		//IDENTIFICAR EL USUARIO A ELIMINAR
-		int equipo = Integer.parseInt(txtIdEquipo.getText());
+		int id_equipo = Integer.parseInt(txtIdEquipo.getText());
 		//PREGUNTAR SI ESTÁ SEGURO QUE DESEA ELIMINAR ESE EQUIPO
-		int res = JOptionPane.showConfirmDialog(this, 
+		int res = JOptionPane.showConfirmDialog(this,
 			"¿Está seguro que desea eliminar este equipo?", "Eliminar Equipo",
 			JOptionPane.YES_NO_OPTION);
 		if (res == 0) {
 			try {
 				//ELIMINAR EL EQUIPO
-				FacadeEquipos.deleteEquipo(equipo);
+				FacadeEquipos.deleteEquipo(id_equipo);
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(this, 
+				JOptionPane.showMessageDialog(this,
 					"ERROR: No se ha podido establecer conexión con la base de datos.",
 					"Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -1221,7 +1234,8 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
         private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
 		// TODO add your handling code here:
-		validar.validarNumeros(evt);
+		validar val = new validar();
+		val.validarNumeros(evt);
         }//GEN-LAST:event_txtCantidadKeyTyped
 
 	//DECLARAR VARAIABLES PARA IDENTIFICAR EL EQUIPO Y USARIO AL CUAL VAMOS A HACER UN PRESTAMOS
@@ -1234,9 +1248,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
 
 	public void setEquipoPrestamo(Equipo equipoPrestamo) {
 		this.equipoPrestamo = equipoPrestamo;
-		//txtAuxiliar.setText("dfsdfsdf");
-		//System.out.println("El dato es: " + getEquipoPrestamo().getDescripcion());
-		//txtEquipo.setText(getEquipoPrestamo().getDescripcion());
 	}
 
 	public Usuario getUsuarioPrestamo() {
@@ -1253,13 +1264,26 @@ public class PrestamosITCA extends javax.swing.JFrame {
 		guardarCambios gc = new guardarCambios();
 		//HACER REFERENCIA A LA CLASE VALIDAR
 		validar nuevo = new validar();
-		if (nuevo.nuevoPrestamo()) {
+
+		if (nuevo.nuevoPrestamo(txtIdEquipo.getText(), txtEquipo.getText(), txtUsuario.getText(), Integer.parseInt(txtCantidadEquipos.getText()), txtFechaSalida.getText(), txtFechaEntrega.getText())) {
 			try {
-				//GUARDAR UN NUEVO PRESTAMO
-				gc.guardarPrestamo();
-				//ACTUALIZAR LOS DATOS LA TABLA PRESTAMOS
-				IniciarDatos iniciar = new IniciarDatos();
-				iniciar.IniciarDatosPrestamos((DefaultTableModel) tblPrestamo.getModel());
+				//OBTENER EL EQUIPOS QUE VAMOS A PRESTAR
+				Equipo equipo = getEquipoPrestamo();
+				//OBTENER LA CANTIDAD DE EQUIPOS DISPONIBLES DE ESE EQUIPO
+				int cantidadEquipos = equipo.getCantidad();
+				//VALIDAR EN CASO DE QUE EL CANTIDAD SEA MAYOUR AL NUMERO DE EQUIPOS DISPONIBLES
+				if (Integer.parseInt(txtCantidadEquipos.getText()) <= cantidadEquipos) {
+					//GUARDAR UN NUEVO PRESTAMO
+					gc.guardarPrestamo(getEquipoPrestamo(), getUsuarioPrestamo(), Integer.parseInt(txtCantidadEquipos.getText()), new SimpleDateFormat("yyyy/MM/dd").parse(txtFechaSalida.getText()), new SimpleDateFormat("yyyy/MM/dd").parse(txtFechaEntrega.getText()));
+					//ACTUALIZAR LOS DATOS LA TABLA PRESTAMOS
+					IniciarDatos iniciar = new IniciarDatos();
+					iniciar.IniciarDatosPrestamos((DefaultTableModel) tblPrestamo.getModel());
+				} else {
+					JOptionPane.showMessageDialog(this,
+						"ERROR: No hay suficientes equipos para relizar el préstamos!"
+						+ "\n\nNúmero de equipos disponibles: " + cantidadEquipos + ".",
+						"Error", JOptionPane.ERROR_MESSAGE);
+				}
 			} catch (Exception e) {
 				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO PRESTAMO
 				JOptionPane.showMessageDialog(this,
@@ -1268,11 +1292,22 @@ public class PrestamosITCA extends javax.swing.JFrame {
 			}
 		} else {
 			try {
+				Prestamo pres = FacadePrestamos.getPrestamo(Integer.parseInt(txtIdPrestamo.getText()));
+				Equipo equipo = pres.getIdEquipo();
+				int cantidadEquipos = equipo.getCantidad();
+				int cantidadRestar = Integer.parseInt(txtCantidadEquipos.getText()) - cantidadEquipos;
+				if(cantidadRestar <= getEquipoPrestamo().getCantidad()){
 				//ACTUALIZAR LOS DATOS DEL PRESTAMO
-				gc.actualizarPrestamo();
+				gc.actualizarPrestamo(Integer.parseInt(txtIdPrestamo.getText()), getEquipoPrestamo(), getUsuarioPrestamo(), Integer.parseInt(txtCantidadEquipos.getText()), new SimpleDateFormat("yyyy/MM/dd").parse(txtFechaSalida.getText()), new SimpleDateFormat("yyyy/MM/dd").parse(txtFechaEntrega.getText()));
 				//ACTUALIZAR LOS DATOS LA TABLA PRESTAMOS
 				IniciarDatos iniciar = new IniciarDatos();
 				iniciar.IniciarDatosPrestamos((DefaultTableModel) tblPrestamo.getModel());
+				}else{
+					JOptionPane.showMessageDialog(this,
+						"ERROR: No hay suficientes equipos para relizar el préstamos!"
+						+ "\n\nNúmero de equipos disponibles: " + cantidadEquipos + ".",
+						"Error", JOptionPane.ERROR_MESSAGE);
+				}
 			} catch (Exception e) {
 				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO USUARIO
 				JOptionPane.showMessageDialog(this,
@@ -1285,20 +1320,20 @@ public class PrestamosITCA extends javax.swing.JFrame {
         private void btnEliminarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPrestamoActionPerformed
 		// TODO add your handling code here:
 		//IDENTIFICAR EL PRESTAMO A ELIMINAR
-		int prestamo = Integer.parseInt(txtIdPrestamo.getText());
+		int id_prestamo = Integer.parseInt(txtIdPrestamo.getText());
 		//PREGUNTAR SI ESTÁ SEGURO QUE DESEA ELIMINAR ESE PRESTAMO
-		int res = JOptionPane.showConfirmDialog(this, 
+		int res = JOptionPane.showConfirmDialog(this,
 			"¿Está seguro que desea eliminar este présamo?", "Eliminar Prestamo",
 			JOptionPane.YES_NO_OPTION);
 		if (res == 0) {
 			try {
 				//ELIMINAR EL PRESTAMO
-				FacadePrestamos.deletePrestamo(prestamo);
+				FacadePrestamos.deletePrestamo(id_prestamo);
 				//DEVUELVA LOS EQUIPOS
 				guardarCambios gc = new guardarCambios();
-				gc.devolverEquipos();
+				gc.devolverEquipos(Integer.parseInt(txtCantidadEquipos.getText()), id_prestamo);
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(this, 
+				JOptionPane.showMessageDialog(this,
 					"ERROR: No se ha podido establecer conexión con la base de datos.",
 					"Error", JOptionPane.ERROR_MESSAGE);
 			}

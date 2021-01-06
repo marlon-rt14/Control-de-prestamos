@@ -3,6 +3,7 @@ package modelo;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.entidades.Usuario;
 import modelo.dao.UsuarioJpaController;
 import modelo.dao.exceptions.IllegalOrphanException;
@@ -27,7 +28,7 @@ public class FacadeUsuarios extends FacadeViewReporte {
 		try {
 			daoUsuario.destroy(id);
 		} catch (IllegalOrphanException | NonexistentEntityException ex) {
-			Logger.getLogger(FacadeUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+			JOptionPane.showMessageDialog(null, "Error:\nNo es posible eliminar este usuario ya que está siendo utilizado en otra tabla, asegúrese de eliminar todas las referencias e intente de nuevo.", "FATAL ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

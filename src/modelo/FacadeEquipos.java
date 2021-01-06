@@ -4,6 +4,7 @@ package modelo;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.entidades.Equipo;
 import modelo.dao.EquipoJpaController;
 import modelo.dao.exceptions.IllegalOrphanException;
@@ -28,7 +29,7 @@ public class FacadeEquipos extends FacadeViewReporte{
 		try {
 			daoEquipo.destroy(id);
 		} catch (IllegalOrphanException | NonexistentEntityException ex) {
-			Logger.getLogger(FacadeEquipos.class.getName()).log(Level.SEVERE, null, ex);
+				JOptionPane.showMessageDialog(null, "Error:\nNo es posible eliminar este equipo ya que está siendo utilizado en otra tabla, asegúrese de eliminar todas las referencias e intente de nuevo.", "FATAL ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
