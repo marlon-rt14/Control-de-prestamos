@@ -89,8 +89,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 jLabel26 = new javax.swing.JLabel();
                 jScrollPane2 = new javax.swing.JScrollPane();
                 tblUsuarios = new javax.swing.JTable();
-                txtBuscarUsuario = new javax.swing.JTextField();
-                btnBuscarUsuario = new javax.swing.JButton();
                 jPanel3 = new javax.swing.JPanel();
                 jScrollPane3 = new javax.swing.JScrollPane();
                 tblEquipos = new javax.swing.JTable();
@@ -118,8 +116,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 jLabel30 = new javax.swing.JLabel();
                 jLabel31 = new javax.swing.JLabel();
                 jLabel32 = new javax.swing.JLabel();
-                txtBuscarEquipo = new javax.swing.JTextField();
-                btnBuscarEquipo = new javax.swing.JButton();
                 jPanel5 = new javax.swing.JPanel();
                 jPanel7 = new javax.swing.JPanel();
                 btnEliminarPrestamo = new javax.swing.JButton();
@@ -144,8 +140,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
                 txtEquipo = new javax.swing.JTextField();
                 btnEscogerEquipo = new javax.swing.JButton();
                 btnEscogerUsuario = new javax.swing.JButton();
-                txtBuscarPrestamo = new javax.swing.JTextField();
-                btnBuscarPrestamo = new javax.swing.JButton();
                 jScrollPane4 = new javax.swing.JScrollPane();
                 tblPrestamo = new javax.swing.JTable();
                 jLabel1 = new javax.swing.JLabel();
@@ -418,8 +412,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         tblUsuarios.getColumnModel().getColumn(6).setResizable(false);
                 }
 
-                btnBuscarUsuario.setText("Buscar");
-
                 javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
                 jPanel2.setLayout(jPanel2Layout);
                 jPanel2Layout.setHorizontalGroup(
@@ -428,12 +420,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(txtBuscarUsuario)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnBuscarUsuario))
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
                                 .addContainerGap())
                 );
                 jPanel2Layout.setVerticalGroup(
@@ -441,13 +428,8 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(txtBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(btnBuscarUsuario))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane2))
                                 .addContainerGap())
                 );
 
@@ -666,8 +648,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addContainerGap(16, Short.MAX_VALUE))
                 );
 
-                btnBuscarEquipo.setText("Buscar");
-
                 javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
                 jPanel3.setLayout(jPanel3Layout);
                 jPanel3Layout.setHorizontalGroup(
@@ -676,12 +656,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(txtBuscarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnBuscarEquipo))
-                                        .addComponent(jScrollPane3))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
                                 .addContainerGap())
                 );
                 jPanel3Layout.setVerticalGroup(
@@ -689,13 +664,8 @@ public class PrestamosITCA extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(txtBuscarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(btnBuscarEquipo))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane3))
                                 .addContainerGap())
                 );
 
@@ -883,8 +853,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
 
-                btnBuscarPrestamo.setText("Buscar");
-
                 tblPrestamo.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
 
@@ -931,12 +899,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addComponent(txtBuscarPrestamo)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnBuscarPrestamo))
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE))
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                                 .addContainerGap())
                 );
                 jPanel5Layout.setVerticalGroup(
@@ -945,15 +908,9 @@ public class PrestamosITCA extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(txtBuscarPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(btnBuscarPrestamo))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
-                                        .addGroup(jPanel5Layout.createSequentialGroup()
                                                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap())
+                                                .addContainerGap(78, Short.MAX_VALUE))
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)))
                 );
 
                 jTabbedPane1.addTab("Préstamos", jPanel5);
@@ -1098,8 +1055,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
 				gc.guardarUsuario(txtCedula.getText(), txtNombres.getText(), txtApellidos.getText(),
 					txtTelefono.getText(), txtEmail.getText(), txtDireccion.getText());
 				//ACTUALIZAR LA TABLA USUARIOS
-				IniciarDatos iniciar = new IniciarDatos();
-				iniciar.IniciarDatosUsuarios((DefaultTableModel) tblUsuarios.getModel());
+				iniciarDatos();
 			} catch (Exception e) {
 				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO USUARIO
 				JOptionPane.showMessageDialog(this,
@@ -1113,8 +1069,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
 					txtCedula.getText(), txtNombres.getText(), txtApellidos.getText(),
 					txtTelefono.getText(), txtEmail.getText(), txtDireccion.getText());
 				//ACTUALIZAR LA TABLA USUARIOS
-				IniciarDatos iniciar = new IniciarDatos();
-				iniciar.IniciarDatosUsuarios((DefaultTableModel) tblUsuarios.getModel());
+				iniciarDatos();
 			} catch (Exception e) {
 				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO USUARIO
 				JOptionPane.showMessageDialog(this,
@@ -1183,8 +1138,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
 				//GUARDAR UN EQUIPO NUEVO
 				gc.guardarEquipo(txtDescripcion.getText(), txtMarca.getText(), txtModelo.getText(), txtColor.getText(), Integer.parseInt(txtCantidad.getText()), txtDescripcion.getText());
 				//ACTUALIZAR LA TABLA DE EQUIPOS
-				IniciarDatos iniciar = new IniciarDatos();
-				iniciar.IniciarDatosEqipos((DefaultTableModel) tblEquipos.getModel());
+				iniciarDatos();
 			} catch (Exception e) {
 				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO EQUIPO
 				JOptionPane.showMessageDialog(this,
@@ -1196,8 +1150,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
 				//ACTUALIZAR UN EQUIPO
 				gc.actualizarEquipo(Integer.parseInt(txtIdEquipo.getText()), txtDescripcion.getText(), txtMarca.getText(), txtModelo.getText(), txtColor.getText(), Integer.parseInt(txtCantidad.getText()), txtDepartamento.getText());
 				//ACTUALIZAR LA TABLA DE EQUIPOS
-				IniciarDatos iniciar = new IniciarDatos();
-				iniciar.IniciarDatosEqipos((DefaultTableModel) tblEquipos.getModel());
+				iniciarDatos();
 			} catch (Exception e) {
 				//MOSTRAR MENSAJE DE ALERTA QUE SE HA PRODUCIDO UN ERROR AL GUARDAR UN NUEVO USUARIO
 				JOptionPane.showMessageDialog(this,
@@ -1276,8 +1229,7 @@ public class PrestamosITCA extends javax.swing.JFrame {
 					//GUARDAR UN NUEVO PRESTAMO
 					gc.guardarPrestamo(getEquipoPrestamo(), getUsuarioPrestamo(), Integer.parseInt(txtCantidadEquipos.getText()), new SimpleDateFormat("yyyy/MM/dd").parse(txtFechaSalida.getText()), new SimpleDateFormat("yyyy/MM/dd").parse(txtFechaEntrega.getText()));
 					//ACTUALIZAR LOS DATOS LA TABLA PRESTAMOS
-					IniciarDatos iniciar = new IniciarDatos();
-					iniciar.IniciarDatosPrestamos((DefaultTableModel) tblPrestamo.getModel());
+					iniciarDatos();
 				} else {
 					JOptionPane.showMessageDialog(this,
 						"ERROR: No hay suficientes equipos para relizar el préstamos!"
@@ -1296,13 +1248,12 @@ public class PrestamosITCA extends javax.swing.JFrame {
 				Equipo equipo = pres.getIdEquipo();
 				int cantidadEquipos = equipo.getCantidad();
 				int cantidadRestar = Integer.parseInt(txtCantidadEquipos.getText()) - cantidadEquipos;
-				if(cantidadRestar <= getEquipoPrestamo().getCantidad()){
-				//ACTUALIZAR LOS DATOS DEL PRESTAMO
-				gc.actualizarPrestamo(Integer.parseInt(txtIdPrestamo.getText()), getEquipoPrestamo(), getUsuarioPrestamo(), Integer.parseInt(txtCantidadEquipos.getText()), new SimpleDateFormat("yyyy/MM/dd").parse(txtFechaSalida.getText()), new SimpleDateFormat("yyyy/MM/dd").parse(txtFechaEntrega.getText()));
-				//ACTUALIZAR LOS DATOS LA TABLA PRESTAMOS
-				IniciarDatos iniciar = new IniciarDatos();
-				iniciar.IniciarDatosPrestamos((DefaultTableModel) tblPrestamo.getModel());
-				}else{
+				if (cantidadRestar <= getEquipoPrestamo().getCantidad()) {
+					//ACTUALIZAR LOS DATOS DEL PRESTAMO
+					gc.actualizarPrestamo(Integer.parseInt(txtIdPrestamo.getText()), getEquipoPrestamo(), getUsuarioPrestamo(), Integer.parseInt(txtCantidadEquipos.getText()), new SimpleDateFormat("yyyy/MM/dd").parse(txtFechaSalida.getText()), new SimpleDateFormat("yyyy/MM/dd").parse(txtFechaEntrega.getText()));
+					//ACTUALIZAR LOS DATOS LA TABLA PRESTAMOS
+					iniciarDatos();
+				} else {
 					JOptionPane.showMessageDialog(this,
 						"ERROR: No hay suficientes equipos para relizar el préstamos!"
 						+ "\n\nNúmero de equipos disponibles: " + cantidadEquipos + ".",
@@ -1397,9 +1348,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
 	}
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
-        private javax.swing.JButton btnBuscarEquipo;
-        private javax.swing.JButton btnBuscarPrestamo;
-        private javax.swing.JButton btnBuscarUsuario;
         private javax.swing.JButton btnEliminarEquipo;
         private javax.swing.JButton btnEliminarPrestamo;
         private javax.swing.JButton btnEliminarUsuario;
@@ -1465,9 +1413,6 @@ public class PrestamosITCA extends javax.swing.JFrame {
         private javax.swing.JTable tblReporte;
         private javax.swing.JTable tblUsuarios;
         public javax.swing.JTextField txtApellidos;
-        private javax.swing.JTextField txtBuscarEquipo;
-        private javax.swing.JTextField txtBuscarPrestamo;
-        private javax.swing.JTextField txtBuscarUsuario;
         public javax.swing.JTextField txtCantidad;
         public javax.swing.JTextField txtCantidadEquipos;
         public javax.swing.JTextField txtCedula;
